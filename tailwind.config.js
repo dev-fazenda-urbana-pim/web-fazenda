@@ -17,6 +17,17 @@ module.exports = {
       },
     },
     extend: {
+      colors: {
+        blue: {
+          "prussian": '#024059',
+          "indigo-dye": '#284B63',
+        },
+        green: {
+          "pistachio": '#04BF8A',
+          "dark": '#03A64A',
+          "limon": '#025940',
+        },
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

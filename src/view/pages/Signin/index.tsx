@@ -43,14 +43,14 @@ export default function Signin() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-blue-800">
+    <div className="flex flex-col items-center justify-center h-screen bg-blue-indigo-dye">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 p-4 max-w-[500px] bg-gray-100 rounded-2xl">
           <h2 className="text-2xl text-center">Entre em sua conta</h2>
 
           <p className="text-center">
             Não possui conta? Crie {''}
-            <Link to="/signup" className="text-blue-800 hover:underline">aqui</Link>
+            <Link to="/signup" className="text-blue-indigo-dye font-semibold hover:underline">aqui</Link>
           </p>
 
           <FormField
@@ -83,9 +83,9 @@ export default function Signin() {
             )}
           />
 
-          <Button type="submit" className="w-full">Login</Button>
+          <Button type="submit" className="w-full bg-blue-indigo-dye">Login</Button>
 
-          <p className="text-blue-800">
+          <p className="text-blue-indigo-dye font-semibold">
             Em caso de perda de acesso, entre em contato com
             seu gerente ou supervisor.
           </p>

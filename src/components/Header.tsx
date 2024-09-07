@@ -2,7 +2,7 @@ import { AvatarProfile } from "./AvatarProfile";
 
 export default function Header() {
   return (
-    <header className="flex justify-between items-center py-4 px-8 bg-blue-800">
+    <header className="flex justify-between items-center py-4 px-8 bg-blue-indigo-dye">
       <figure>
         <img
           src="/logo-pim4.png"
