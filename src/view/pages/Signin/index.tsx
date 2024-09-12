@@ -61,7 +61,7 @@ export default function Signin() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Digite seu email" {...field} />
+                  <Input placeholder="Digite seu email" {...field} className="bg-gray-300"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -76,7 +76,7 @@ export default function Signin() {
               <FormItem>
                 <FormLabel>Senha</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Digite sua senha" {...field} />
+                  <Input type="password" placeholder="Digite sua senha" {...field} className="bg-gray-300"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
