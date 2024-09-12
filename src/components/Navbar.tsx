@@ -17,7 +17,7 @@ export function Navbar() {
       <SheetTrigger asChild>
         <Button variant="outline">Open</Button>
       </SheetTrigger>
-      <SheetContent side="left" className="flex flex-col justify-between">
+      <SheetContent side="left"  className="flex flex-col justify-between">
         <div className="grid gap-6">
           <SheetHeader>
             <SheetTitle className="text-blue-indigo-dye">Módulos</SheetTitle>
