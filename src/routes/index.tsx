@@ -1,5 +1,6 @@
 import Fornecedores from "@/view/pages/Fornecedores";
 import Home from "@/view/pages/Home";
+import Producao from "@/view/pages/Producao";
 import Signin from "@/view/pages/Signin";
 import Signup from "@/view/pages/Signup";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -12,6 +13,7 @@ export function Router() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/fornecedores" element={<Fornecedores />} />
+        <Route path="/producao" element={<Producao />} />
       </Routes>
     </BrowserRouter>
   )
