@@ -1,5 +1,5 @@
 import Header from "@/components/Header"
-import { TableSuppliers } from "@/view/pages/Fornecedores/components/TableSuppliers"
+import { TableSuppliers } from "@/view/pages/Estoque/components copy/TableSuppliers"
 import { Navbar } from "@/components/Navbar";
 
 

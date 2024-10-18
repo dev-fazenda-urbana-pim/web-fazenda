@@ -1,5 +1,7 @@
 import { TrendingUp } from "lucide-react";
 import { Bar, BarChart, XAxis, YAxis, Label } from "recharts";
+import { Navbar } from "@/components/Navbar";
+
 
 import {
   Card,
@@ -36,7 +38,8 @@ export default function Producao() {
   return (
     <>
       <Header />
-
+    <>
+    <Navbar />
       <Card>
         <CardHeader className="flex flex-row justify-between items-center">
           <CardTitle>Produção De Insumos</CardTitle>
@@ -78,6 +81,7 @@ export default function Producao() {
           </div>
         </CardFooter>
       </Card>
+      </>
     </>
   );
 }
