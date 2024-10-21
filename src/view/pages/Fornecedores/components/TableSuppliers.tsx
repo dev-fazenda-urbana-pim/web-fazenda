@@ -100,7 +100,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: "Nome",
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("status")}</div>
     ),
