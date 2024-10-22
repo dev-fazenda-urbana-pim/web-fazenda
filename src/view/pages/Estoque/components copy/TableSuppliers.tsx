@@ -38,41 +38,47 @@ import { ModalRegisterSupplier } from "./ModalRegisterSupplier"
 const data: Payment[] = [
   {
     id: "m5gr84i9",
-    amount: 316,
-    CNPJ: "02.370.284/0001-33",
+    Descrição: 316,
+    Código: "02.370.284/0001-33",
     Fornecedor: "AppleFarms",
+    Status: "Valor 1",
   },
   {
     id: "3u1reuv4",
-    amount: 242,
-    CNPJ: "02.370.284/0001-33",
+    Descrição: 242,
+    Código: "02.370.284/0001-33",
     Fornecedor: "AquaPure Solutios",
+    Status: "Valor 2",
   },
   {
     id: "derv1ws0",
-    amount: 837,
-    CNPJ: "02.370.284/0001-33",
+    Descrição: 837,
+    Código: "02.370.284/0001-33",
     Fornecedor: "AquaTech",
+    Status: "Valor 3",
   },
   {
     id: "5kma53ae",
-    amount: 874,
-    CNPJ: "02.370.284/0001-33",
+    Descrição: 874,
+    Código: "02.370.284/0001-33",
     Fornecedor: "Sementes VerdeVida",
+    Status: "Valor 4",
   },
   {
     id: "bhqecj4p",
-    amount: 721,
-    CNPJ: "02.370.284/0001-33",
+    Descrição: 721,
+    Código: "02.370.284/0001-33",
     Fornecedor: "AquaLife",
+    Status: "Valor 5",
   },
 ]
 
 export type Payment = {
   id: string
-  amount: number
-  CNPJ: "02.370.284/0001-33"
+  Descrição: Number
+  Código: string
   Fornecedor: string
+  Status: string // Adicione a nova propriedade aqui
 }
 
 export const columns: ColumnDef<Payment>[] = [
@@ -99,10 +105,10 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "CNPJ",
-    header: "CNPJ",
+    accessorKey: "Código",
+    header: "Código",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("CNPJ")}</div>
+      <div className="capitalize">{row.getValue("Código")}</div>
     ),
   },
   {
@@ -121,19 +127,26 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => <div className="lowercase">{row.getValue("Fornecedor")}</div>,
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    accessorKey: "Descrição",
+    header: () => <div className="text-right">Descrição</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"))
+      const Descrição = parseFloat(row.getValue("Descrição"))
 
-      // Format the amount as a dollar amount
+      // Format the Descrição as a dollar Descrição
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
-      }).format(amount)
+      }).format(Descrição)
 
       return <div className="text-right font-medium">{formatted}</div>
     },
+  },
+  {
+    accessorKey: "Status", // Adicione a nova coluna aqui
+    header: "Status",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("Status")}</div>
+    ),
   },
   {
     id: "actions",
@@ -168,11 +181,8 @@ export const columns: ColumnDef<Payment>[] = [
 
 export function TableSuppliers() {
   const [sorting, setSorting] = useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
-    []
-  )
-  const [columnVisibility, setColumnVisibility] =
-    useState<VisibilityState>({})
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = useState({})
 
   const table = useReactTable({
@@ -198,7 +208,7 @@ export function TableSuppliers() {
     <div className="w-full px-5">
       <header className="flex items-center justify-between py-4">
         <Input
-          placeholder="Pesquisar fornecedores"
+          placeholder="Pesquisar Por Sementes/Plantas"
           value={(table.getColumn("Fornecedor")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("Fornecedor")?.setFilterValue(event.target.value)
