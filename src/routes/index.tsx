@@ -4,7 +4,7 @@ import Producao from "@/view/pages/Producao";
 import Signin from "@/view/pages/Signin";
 import Signup from "@/view/pages/Signup";
 import Estoque from "@/view/pages/Estoque";
-import Financeiro from "@/view/pages/Financeiro";
+import Financeiro from "@/view/pages/Financeiro";   
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export function Router() {
