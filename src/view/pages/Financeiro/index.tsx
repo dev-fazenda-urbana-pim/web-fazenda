@@ -19,8 +19,14 @@ import {
 
 export default function Financeiro() {
   return (
-    <div className="w-full h-screen">
-      <Component />
+    <div className="w-full h-screen flex flex-col">
+      <Header />
+      <div className="flex flex-1 overflow-hidden">
+        <Navbar />
+        <div className="flex-1 overflow-auto p-4">
+          <Component />
+        </div>
+      </div>
     </div>
   );
 }
@@ -28,47 +34,43 @@ export default function Financeiro() {
 export const description = "An area chart with gradient fill";
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
+  { month: "Janeiro", desktop: 186, mobile: 80 },
+  { month: "Fevereiro", desktop: 305, mobile: 200 },
+  { month: "Marco", desktop: 237, mobile: 120 },
+  { month: "Abril", desktop: 73, mobile: 190 },
+  { month: "Mai", desktop: 209, mobile: 130 },
   { month: "June", desktop: 214, mobile: 140 },
 ];
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
+    label: "Entradas",
     color: "hsl(var(--chart-1))",
   },
   mobile: {
-    label: "Mobile",
+    label: "Saídas",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
 export function Component() {
   return (
-    <>
-    <Header />
-        <>
-            <Navbar />
-    <Card className="w-full h-full">
+    <Card className="w-full h-full border border-gray-300">
       <CardHeader>
-        <CardTitle>Area Chart - Gradient</CardTitle>
-        <CardDescription>
-          Showing total visitors for the last 6 months
-        </CardDescription>
+        <CardTitle>Entradas e Saídas</CardTitle>
+        <CardDescription>Vendas do mês</CardDescription>
       </CardHeader>
-      <CardContent className="w-full h-full">
+      <CardContent className="w-full h-full p-0">
         <ChartContainer config={chartConfig} className="w-full h-full">
           <AreaChart
             width={window.innerWidth}
             height={window.innerHeight}
             data={chartData}
             margin={{
-              left: 12,
-              right: 12,
+              top: 10,
+              left: 9,
+              right: 9,
+              bottom: 75, // Ajuste a margem inferior para garantir espaço para os rótulos
             }}
           >
             <CartesianGrid vertical={false} />
@@ -77,7 +79,7 @@ export function Component() {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickFormatter={(value) => value.slice(0, 3)} // Certifique-se de que os rótulos estão sendo formatados corretamente
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <defs>
@@ -93,7 +95,7 @@ export function Component() {
                   stopOpacity={0.1}
                 />
               </linearGradient>
-              <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="fillMobile" x1="0" y1="0" x2="3" y2="1">
                 <stop
                   offset="5%"
                   stopColor="#FF5722" // Nova cor para Mobile
@@ -129,17 +131,14 @@ export function Component() {
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 font-medium leading-none">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+            Vendas aumentaram 7.5% nesse semestre <TrendingUp className="h-4 w-4" />
             </div>
             <div className="flex items-center gap-2 leading-none text-muted-foreground">
-              January - June 2024
+              Janeiro - Julho 2024
             </div>
           </div>
         </div>
       </CardFooter>
     </Card>
-        </>
-    </>
-
   );
 }
