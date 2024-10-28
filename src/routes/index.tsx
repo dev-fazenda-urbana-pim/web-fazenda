@@ -6,6 +6,7 @@ import Signup from "@/view/pages/Signup";
 import Estoque from "@/view/pages/Estoque";
 import Financeiro from "@/view/pages/Financeiro";   
 import Logistica from "@/view/pages/Logistica";   
+import Clientes from "@/view/pages/Clientes";   
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export function Router() {
@@ -20,6 +21,7 @@ export function Router() {
         <Route path="/estoque" element={<Estoque />} />
         <Route path="/financeiro" element={<Financeiro />} />
         <Route path="/logistica" element={<Logistica />} />
+        <Route path="/clientes" element={<Clientes />} />
       </Routes>
     </BrowserRouter>
   )
