@@ -8,12 +8,12 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
-} from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
+  useReactTable,
+} from "@tanstack/react-table";
+import { ArrowUpDown, ChevronDown, MoreHorizontal, Search } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -22,8 +22,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -31,55 +31,132 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { useState } from "react"
-import { ModalRegisterSupplier } from "./ModalRegisterSupplier"
+} from "@/components/ui/table";
+import { useState } from "react";
 
 const data: Payment[] = [
   {
     id: "m5gr84i9",
-    Descrição: 316,
     Código: "02.370.284/0001-33",
     Fornecedor: "AppleFarms",
-    Status: "Valor 1",
+    Itens: "Sementes A",
+    Peso: 1.5,
+    Status: "sem estoque",
   },
   {
     id: "3u1reuv4",
-    Descrição: 242,
-    Código: "02.370.284/0001-33",
+    Código: "02.370.284/0001-34",
     Fornecedor: "AquaPure Solutios",
-    Status: "Valor 2",
+    Itens: "Sementes B",
+    Peso: 2.0,
+    Status: "Alto",
   },
   {
     id: "derv1ws0",
-    Descrição: 837,
-    Código: "02.370.284/0001-33",
+    Código: "02.370.284/0001-35",
     Fornecedor: "AquaTech",
-    Status: "Valor 3",
+    Itens: "Sementes C",
+    Peso: 1.2,
+    Status: "Baixo",
   },
   {
     id: "5kma53ae",
-    Descrição: 874,
-    Código: "02.370.284/0001-33",
+    Código: "02.370.284/0001-36",
     Fornecedor: "Sementes VerdeVida",
-    Status: "Valor 4",
+    Itens: "Sementes D",
+    Peso: 3.0,
+    Status: "sem estoque",
   },
   {
     id: "bhqecj4p",
-    Descrição: 721,
-    Código: "02.370.284/0001-33",
+    Código: "02.370.284/0001-37",
     Fornecedor: "AquaLife",
-    Status: "Valor 5",
+    Itens: "Sementes E",
+    Peso: 1.8,
+    Status: "Alto",
   },
-]
+  {
+    id: "k2d1g8n0",
+    Código: "02.370.284/0001-38",
+    Fornecedor: "Nature Seeds",
+    Itens: "Sementes F",
+    Peso: 1.6,
+    Status: "Baixo",
+  },
+  {
+    id: "p5w3t2z1",
+    Código: "02.370.284/0001-39",
+    Fornecedor: "Plant Power",
+    Itens: "Sementes G",
+    Peso: 2.5,
+    Status: "sem estoque",
+  },
+  {
+    id: "u9g2h8j3",
+    Código: "02.370.284/0001-40",
+    Fornecedor: "Greenhouse Co.",
+    Itens: "Sementes H",
+    Peso: 4.0,
+    Status: "Alto",
+  },
+  {
+    id: "y1u3r6t8",
+    Código: "02.370.284/0001-41",
+    Fornecedor: "Eco Seeds",
+    Itens: "Sementes I",
+    Peso: 2.3,
+    Status: "Baixo",
+  },
+  {
+    id: "t6v9h4k2",
+    Código: "02.370.284/0001-42",
+    Fornecedor: "Seed Bank",
+    Itens: "Sementes J",
+    Peso: 1.1,
+    Status: "sem estoque",
+  },
+  {
+    id: "a2e4v6q8",
+    Código: "02.370.284/0001-43",
+    Fornecedor: "Flora Seeds",
+    Itens: "Sementes K",
+    Peso: 2.4,
+    Status: "Alto",
+  },
+  {
+    id: "h5f2b8r7",
+    Código: "02.370.284/0001-44",
+    Fornecedor: "Nature's Best",
+    Itens: "Sementes L",
+    Peso: 3.2,
+    Status: "Baixo",
+  },
+  {
+    id: "j8r3w6m2",
+    Código: "02.370.284/0001-45",
+    Fornecedor: "Harvest Seeds",
+    Itens: "Sementes M",
+    Peso: 2.0,
+    Status: "sem estoque",
+  },
+  {
+    id: "z2h8g9n1",
+    Código: "02.370.284/0001-46",
+    Fornecedor: "Green Thumb",
+    Itens: "Sementes N",
+    Peso: 1.7,
+    Status: "Alto",
+  },
+];
 
 export type Payment = {
-  id: string
-  Descrição: Number
-  Código: string
-  Fornecedor: string
-  Status: string // Adicione a nova propriedade aqui
-}
+  id: string;
+  Código: string;
+  Fornecedor: string;
+  Itens: string;
+  Peso: number;
+  Status: string;
+};
 
 export const columns: ColumnDef<Payment>[] = [
   {
@@ -122,37 +199,49 @@ export const columns: ColumnDef<Payment>[] = [
           Fornecedor
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("Fornecedor")}</div>,
-  },
-  {
-    accessorKey: "Descrição",
-    header: () => <div className="text-right">Descrição</div>,
-    cell: ({ row }) => {
-      const Descrição = parseFloat(row.getValue("Descrição"))
-
-      // Format the Descrição as a dollar Descrição
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(Descrição)
-
-      return <div className="text-right font-medium">{formatted}</div>
-    },
-  },
-  {
-    accessorKey: "Status", // Adicione a nova coluna aqui
-    header: "Status",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("Status")}</div>
+      <div className="lowercase">{row.getValue("Fornecedor")}</div>
     ),
+  },
+  {
+    accessorKey: "Itens",
+    header: () => <div className="text-right">Itens</div>,
+    cell: ({ row }) => (
+      <div className="text-right font-medium">{row.getValue("Itens")}</div>
+    ),
+  },
+  {
+    accessorKey: "Peso",
+    header: () => <div className="text-right">Peso (Kg)</div>,
+    cell: ({ row }) => {
+      const peso = row.getValue("Peso");
+      return (
+        <div className="text-right font-medium">{peso}</div>
+      );
+    },
+  },
+  {
+    accessorKey: "Status",
+    header: "Status",
+    cell: ({ row }) => {
+      const status = row.getValue("Status");
+      const statusStyles = {
+        "sem estoque": "text-red-500",
+        "Alto": "text-green-500",
+        "Baixo": "text-gray-500",
+      };
+      return (
+        <div className={`capitalize ${statusStyles[status]}`}>{status}</div>
+      );
+    },
   },
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original
+      const payment = row.original;
 
       return (
         <DropdownMenu>
@@ -174,16 +263,16 @@ export const columns: ColumnDef<Payment>[] = [
             <DropdownMenuItem>View payment details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      )
+      );
     },
   },
-]
+];
 
 export function TableSuppliers() {
-  const [sorting, setSorting] = useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
-  const [rowSelection, setRowSelection] = useState({})
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     data,
@@ -202,95 +291,51 @@ export function TableSuppliers() {
       columnVisibility,
       rowSelection,
     },
-  })
+  });
 
   return (
     <div className="w-full px-5">
-      <header className="flex items-center justify-between py-4">
-        <Input
-          placeholder="Pesquisar Por Sementes/Plantas"
-          value={(table.getColumn("Fornecedor")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("Fornecedor")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-
-        <div className="space-x-4">
-          <ModalRegisterSupplier />
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="ml-auto">
-                Columns <ChevronDown className="ml-2 h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {table
-                .getAllColumns()
-                .filter((column) => column.getCanHide())
-                .map((column) => {
-                  return (
-                    <DropdownMenuCheckboxItem
-                      key={column.id}
-                      className="capitalize"
-                      checked={column.getIsVisible()}
-                      onCheckedChange={(value) =>
-                        column.toggleVisibility(!!value)
-                      }
-                    >
-                      {column.id}
-                    </DropdownMenuCheckboxItem>
-                  )
-                })}
-            </DropdownMenuContent>
-          </DropdownMenu>
+      <header className="flex justify-center py-4">
+        <div className="relative max-w-lg w-full">
+          <Search className="absolute left-2 h-5 w-5 top-1/2 transform -translate-y-1/2" />
+          <Input
+            placeholder="Digite o nome do produto"
+            className="pl-10" // Adiciona padding à esquerda para espaço da lupa
+          />
         </div>
       </header>
+
+      <h2 className="text-lg font-semibold mb-4">Lista de Produtos</h2> {/* Título da Tabela */}
 
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                    </TableHead>
-                  )
-                })}
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext())}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
+                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"} className="h-10">
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={columns.length} className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>
@@ -301,29 +346,18 @@ export function TableSuppliers() {
 
       <footer className="flex items-center justify-between space-x-2 py-4">
         <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
+          <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
             Previous
           </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
+          <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
             Next
           </Button>
         </div>
 
         <div className="text-sm text-muted-foreground">
-          Resultados {table.getFilteredSelectedRowModel().rows.length} de{" "}
-          {table.getFilteredRowModel().rows.length} páginas.
+          Resultados {table.getFilteredSelectedRowModel().rows.length} de {table.getFilteredRowModel().rows.length} páginas.
         </div>
       </footer>
     </div>
-  )
+  );
 }
