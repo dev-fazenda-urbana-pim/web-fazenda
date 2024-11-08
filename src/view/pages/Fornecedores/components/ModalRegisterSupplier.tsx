@@ -24,7 +24,7 @@ export function ModalRegisterSupplier() {
           Adicionar <Plus className="ml-2 h-4 w-4" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[750px]">
+      <DialogContent className="sm:max-w-[750px]" onCloseAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
           <DialogTitle>Cadastro de Fornecedor</DialogTitle>
           <DialogDescription>
@@ -39,7 +39,7 @@ export function ModalRegisterSupplier() {
                 <div key={field} className="w-full sm:w-1/2 px-2 mb-4">
                   <FormField
                     control={form.control}
-                    name={field}
+                    name={field as "companyName" | "cnpj" | "tradeName" | "email" | "address" | "state" | "contact"}
                     defaultValue=""
                     render={({ field }) => (
                       <FormItem>
@@ -56,7 +56,7 @@ export function ModalRegisterSupplier() {
             </div>
 
             <DialogFooter>
-              <Button type="submit" className="bg-green-limon">Cadastrar</Button>
+              <Button type="submit" className="bg-blue-prussian">Cadastrar</Button>
             </DialogFooter>
           </form>
         </Form>

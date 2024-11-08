@@ -38,41 +38,53 @@ import { ModalRegisterSupplier } from "./ModalRegisterSupplier"
 const data: Payment[] = [
   {
     id: "m5gr84i9",
-    amount: 316,
-    status: "success",
+    name: "Alpha Seed",
     email: "ken99@yahoo.com",
+    cnpj: "12.345.678/0001-99",
+    endereco: "Rua A, 123",
+    Contato: "11 99999-9999",
   },
   {
     id: "3u1reuv4",
-    amount: 242,
-    status: "success",
+    name: "Prime Cult",
     email: "Abe45@gmail.com",
+    cnpj: "98.765.432/0001-88",
+    endereco: "Rua B, 456",
+    Contato: "11 99999-9999",
   },
   {
     id: "derv1ws0",
-    amount: 837,
-    status: "processing",
+    name: "Wild Harvest",
     email: "Monserrat44@gmail.com",
+    cnpj: "11.222.333/0001-77",
+    endereco: "Rua C, 789",
+    Contato: "11 99999-9999",
   },
   {
     id: "5kma53ae",
-    amount: 874,
-    status: "success",
+    name: "worldwide",
     email: "Silas22@gmail.com",
+    cnpj: "44.555.666/0001-66",
+    endereco: "Rua D, 101",
+    Contato: "11 99999-9999",
   },
   {
     id: "bhqecj4p",
-    amount: 721,
-    status: "failed",
+    name: "kings plants",
     email: "carmella@hotmail.com",
+    cnpj: "77.888.999/0001-55",
+    endereco: "Rua E, 202",
+    Contato: "11 99999-9999",
   },
 ]
 
 export type Payment = {
   id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
+  name: string
   email: string
+  cnpj: string
+  endereco: string
+  Contato: string
 }
 
 export const columns: ColumnDef<Payment>[] = [
@@ -99,10 +111,10 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
+    accessorKey: "name",
     header: "Nome",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
+      <div className="capitalize">{row.getValue("name")}</div>
     ),
   },
   {
@@ -121,19 +133,25 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
   },
   {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"))
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount)
-
-      return <div className="text-right font-medium">{formatted}</div>
-    },
+    accessorKey: "cnpj",
+    header: "CNPJ",
+    cell: ({ row }) => (
+      <div className="uppercase">{row.getValue("cnpj")}</div>
+    ),
+  },
+  {
+    accessorKey: "endereco",
+    header: "Endereço",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("endereco")}</div>
+    ),
+  },
+  {
+    accessorKey: "Contato",
+    header: "Contato",
+    cell: ({ row }) => (
+      <div className="uppercase">{row.getValue("Contato")}</div>
+    ),
   },
   {
     id: "actions",
@@ -168,9 +186,7 @@ export const columns: ColumnDef<Payment>[] = [
 
 export function TableSuppliers() {
   const [sorting, setSorting] = useState<SortingState>([])
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
-    []
-  )
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] =
     useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = useState({})
@@ -212,7 +228,7 @@ export function TableSuppliers() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
-                Columns <ChevronDown className="ml-2 h-4 w-4" />
+                Colunas <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

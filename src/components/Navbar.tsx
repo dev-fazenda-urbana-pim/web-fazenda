@@ -15,7 +15,7 @@ export function Navbar() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">Open</Button>
+        <Button variant="outline">Menu</Button>
       </SheetTrigger>
       <SheetContent side="left"  className="flex flex-col justify-between">
         <div className="grid gap-6">
@@ -46,7 +46,7 @@ export function Navbar() {
 
         <SheetFooter className="block text-blue-indigo-dye font-bold">
           <h3>Suporte</h3>
-          <p>teste@gmail.com</p>
+          <p>Urbanino@gmail.com</p>
           <p>(12) 99999 - 0000</p>
         </SheetFooter>
       </SheetContent>
