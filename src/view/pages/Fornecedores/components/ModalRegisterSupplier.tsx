@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
-  Dialog, 
+  Dialog,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -10,11 +10,11 @@ import {
 } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Plus } from "lucide-react";
-import useModalRegisterSupplier from "./useModalRegisterSupplier";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Plus } from "lucide-react";
 import { useEffect } from "react";
+import * as yup from "yup";
+import useModalRegisterSupplier from "./useModalRegisterSupplier";
 
 // Definição do esquema de validação com mensagens de erro em português
 const schema = yup.object().shape({
@@ -26,7 +26,7 @@ const schema = yup.object().shape({
     .required("CEP é obrigatório"),
   address: yup.string().required("Endereço é obrigatório"),
   city: yup.string().required("Cidade é obrigatória"),
-  state: yup.string().required("UF é obrigatório"), 
+  state: yup.string().required("UF é obrigatório"),
   neighborhood: yup.string().required("Bairro é obrigatório"),
   phone: yup.string().required("Telefone é obrigatório"),
   email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
@@ -67,128 +67,184 @@ export function ModalRegisterSupplier() {
             {/* Linha 1 */}
             <div className="flex flex-wrap -mx-2">
               <div className="w-full sm:w-1/4 px-2 mb-4">
-                <FormField control={form.control} name="cnpj" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>CNPJ</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="cnpj"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>CNPJ</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
+
               <div className="w-full sm:w-1/2 px-2 mb-4">
-                <FormField control={form.control} name="companyName" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Razão Social</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="companyName"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Razão Social</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
               </div>
+
               <div className="w-full sm:w-1/4 px-2 mb-4">
-                <FormField control={form.control} name="tradeName" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nome Fantasia</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="tradeName"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nome Fantasia</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
               </div>
             </div>
 
             {/* Linha 2 */}
             <div className="flex flex-wrap -mx-2">
               <div className="w-full sm:w-1/4 px-2 mb-4">
-                <FormField control={form.control} name="cep" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>CEP</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="cep"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>CEP</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
               </div>
+
               <div className="w-full sm:w-1/2 px-2 mb-4">
-                <FormField control={form.control} name="address" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Endereço</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="address"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Endereço</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
               </div>
+
               <div className="w-full sm:w-1/4 px-2 mb-4">
-                <FormField control={form.control} name="complement" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Complemento</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="complement"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Complemento</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
               </div>
             </div>
 
             {/* Linha 3 */}
             <div className="flex flex-wrap -mx-2">
               <div className="w-full sm:w-1/3 px-2 mb-4">
-                <FormField control={form.control} name="city" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Cidade</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="city"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Cidade</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
               </div>
+
               <div className="w-full sm:w-1/6 px-2 mb-4">
-                <FormField control={form.control} name="state" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>UF</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="state"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>UF</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
               </div>
+
               <div className="w-full sm:w-1/2 px-2 mb-4">
-                <FormField control={form.control} name="neighborhood" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Bairro</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="neighborhood"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Bairro</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
               </div>
             </div>
 
             {/* Linha 4 */}
             <div className="flex flex-wrap -mx-2">
               <div className="w-full sm:w-1/2 px-2 mb-4">
-                <FormField control={form.control} name="phone" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Telefone</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Telefone</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
               </div>
+
               <div className="w-full sm:w-1/2 px-2 mb-4">
-                <FormField control={form.control} name="email" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>E-mail</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>E-mail</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
               </div>
             </div>
 
             {/* Linha 5 */}
             <div className="flex flex-wrap -mx-2">
               <div className="w-full px-2 mb-4">
-                <FormField control={form.control} name="representativeName" render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nome do Representante</FormLabel>
-                    <FormControl><Input {...field} /></FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )} />
+                <FormField
+                  control={form.control}
+                  name="representativeName"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nome do Representante</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
               </div>
             </div>
 
