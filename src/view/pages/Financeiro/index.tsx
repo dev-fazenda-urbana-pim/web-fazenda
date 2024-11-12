@@ -40,19 +40,19 @@ export default function Financeiro() {
         <div className="flex-1 overflow-auto p-4">
           <div className="flex justify-around mb-6">
             <InfoBox
-              icon={<svg /* ícone de porquinho */ />}
+              icon="🐷"
               label="Saldo total"
               value="R$ 11.986,62"
               color="#2196F3"
             />
             <InfoBox
-              icon={<svg /* ícone de + carteira */ />}
+              icon="💵"
               label="Total a receber (Mensal)"
               value="R$ 5.546,65"
               color="#4CAF50"
             />
             <InfoBox
-              icon={<svg /* ícone de - carteira */ />}
+              icon="💵"
               label="Total a pagar (Mensal)"
               value="R$ 2.452,53"
               color="#F44336"
