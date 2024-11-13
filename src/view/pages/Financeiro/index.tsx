@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import Header from "@/components/Header";
+import { TableSuppliers } from "@/view/pages/Financeiro/components fin/TableSuppliers"
 import { TrendingUp } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import {
@@ -16,6 +17,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+
+
 
 function InfoBox({ icon, label, value, color }) {
   return (
@@ -46,13 +49,13 @@ export default function Financeiro() {
               color="#2196F3"
             />
             <InfoBox
-              icon="💵"
+              icon="+💵"
               label="Total a receber (Mensal)"
               value="R$ 5.546,65"
               color="#4CAF50"
             />
             <InfoBox
-              icon="💵"
+              icon="-💵"
               label="Total a pagar (Mensal)"
               value="R$ 2.452,53"
               color="#F44336"
@@ -68,12 +71,12 @@ export default function Financeiro() {
 export const description = "An area chart with gradient fill";
 
 const chartData = [
-  { month: "Janeiro", desktop: 186, mobile: 80 },
-  { month: "Fevereiro", desktop: 305, mobile: 200 },
-  { month: "Marco", desktop: 237, mobile: 120 },
-  { month: "Abril", desktop: 73, mobile: 190 },
-  { month: "Mai", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "Janeiro", desktop: 6422.91, mobile: 2567.56 },
+  { month: "Fevereiro", desktop: 5055.22, mobile: 3009.86 },
+  { month: "Marco", desktop: 3998.54, mobile: 3095.32 },
+  { month: "Abril", desktop: 7323.21, mobile: 4752.43 },
+  { month: "Mai", desktop: 7432.24, mobile: 3652.53 },  
+  { month: "June", desktop:  5546.65, mobile:  2452.53 },
 ];
 
 const chartConfig = {
@@ -89,6 +92,7 @@ const chartConfig = {
 
 export function Component() {
   return (
+    <>
     <Card className="w-full h-full border border-gray-300">
       <CardHeader>
         <CardTitle>Entradas e Saídas</CardTitle>
@@ -174,5 +178,13 @@ export function Component() {
         </div>
       </CardFooter>
     </Card>
+    <div style={{ marginTop: '10rem' }}>
+      <hr />
+    </div>
+    
+    <div style={{ marginTop: '5rem' }}>
+      <TableSuppliers />
+    </div>
+    </>
   );
 }

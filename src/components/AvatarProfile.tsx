@@ -1,14 +1,57 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import React, { useState } from 'react';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel } from '@radix-ui/react-dropdown-menu';
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import imagem1 from "./imagens/avatar_matheus.png"; 
+import { LogOut } from 'lucide-react'; 
+import LogoutModal from "./Confirm"; 
 
 export function AvatarProfile() {
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  const handleOpenLogoutModal = () => {
+    setShowLogoutModal(true);
+  };
+
+  const handleConfirmLogout = () => {
+    setShowLogoutModal(false);
+    // Adicione a lógica de logout aqui
+    console.log('Usuário confirmou logout');
+  };
+
+  const handleCancelLogout = () => {
+    setShowLogoutModal(false);
+  };
+
   return (
-    <Avatar>
-      <AvatarImage src="https://github.com/shadcn.png" alt="user-profile" />
-      <AvatarFallback>CN</AvatarFallback>
-    </Avatar>
-  )
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Avatar className="w-16 h-16 cursor-pointer">
+            <AvatarImage src={imagem1} alt="user-profile" className="w-full h-full rounded-full" />
+            <AvatarFallback className="text-xl">CN</AvatarFallback>
+          </Avatar>
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent align="end" side="bottom" className="w-48 bg-white shadow-lg rounded-lg p-2 mt-2">
+          <DropdownMenuLabel className="text-gray-700 font-semibold">Opções</DropdownMenuLabel>
+          <DropdownMenuItem 
+            onClick={handleOpenLogoutModal} 
+            className="flex items-center space-x-2 text-gray-900 hover:bg-gray-200 p-2 cursor-pointer"
+          >
+            <LogOut className="w-5 h-5" />
+            <span>Sair</span>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      {showLogoutModal && (
+        <div className="fixed inset-0 z-50">
+          <LogoutModal 
+            onConfirm={handleConfirmLogout} 
+            onCancel={handleCancelLogout} 
+          />
+        </div>
+      )}
+    </>
+  );
 }

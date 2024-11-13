@@ -103,11 +103,10 @@ export const columns: ColumnDef<Supplier>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(supplier.id)}>Copy Supplier ID</DropdownMenuItem>
+            <DropdownMenuLabel>Ações</DropdownMenuLabel>
+            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(supplier.id)}>Editar</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View details</DropdownMenuItem>
+            <DropdownMenuItem>Ativar/Desativar</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
