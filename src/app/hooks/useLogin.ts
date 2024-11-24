@@ -4,7 +4,6 @@ import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import UserService from "../services/UserService"
-import { UserSigninRequest } from "../types/User"
 import { FormSchemaLogin, schemaLogin } from "../validations/schemaLogin"
 import useAuth from "./useAuth"
 
@@ -18,7 +17,7 @@ export default function useLogin() {
   })
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: (data: UserSigninRequest) => UserService.signin(data),
+    mutationFn: UserService.signin,
     onError: (error: Error) => {
       toast({ title: error.message, variant: 'destructive' })
     },

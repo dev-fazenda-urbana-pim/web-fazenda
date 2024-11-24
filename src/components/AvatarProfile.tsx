@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel } from '@radix-ui/react-dropdown-menu';
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import imagem1 from "./imagens/avatar_matheus.png"; 
-import { LogOut } from 'lucide-react'; 
-import LogoutModal from "./Confirm"; 
+import useAuth from "@/app/hooks/useAuth";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
+import { LogOut } from 'lucide-react';
+import { useState } from 'react';
+import LogoutModal from "./Confirm";
+import imagem1 from "./imagens/avatar_matheus.png";
 
 export function AvatarProfile() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const { signout } = useAuth()
 
   const handleOpenLogoutModal = () => {
     setShowLogoutModal(true);
@@ -14,8 +16,7 @@ export function AvatarProfile() {
 
   const handleConfirmLogout = () => {
     setShowLogoutModal(false);
-    // Adicione a lógica de logout aqui
-    console.log('Usuário confirmou logout');
+    signout();
   };
 
   const handleCancelLogout = () => {
@@ -34,8 +35,8 @@ export function AvatarProfile() {
 
         <DropdownMenuContent align="end" side="bottom" className="w-48 bg-white shadow-lg rounded-lg p-2 mt-2">
           <DropdownMenuLabel className="text-gray-700 font-semibold">Opções</DropdownMenuLabel>
-          <DropdownMenuItem 
-            onClick={handleOpenLogoutModal} 
+          <DropdownMenuItem
+            onClick={handleOpenLogoutModal}
             className="flex items-center space-x-2 text-gray-900 hover:bg-gray-200 p-2 cursor-pointer"
           >
             <LogOut className="w-5 h-5" />
@@ -46,9 +47,9 @@ export function AvatarProfile() {
 
       {showLogoutModal && (
         <div className="fixed inset-0 z-50">
-          <LogoutModal 
-            onConfirm={handleConfirmLogout} 
-            onCancel={handleCancelLogout} 
+          <LogoutModal
+            onConfirm={handleConfirmLogout}
+            onCancel={handleCancelLogout}
           />
         </div>
       )}
