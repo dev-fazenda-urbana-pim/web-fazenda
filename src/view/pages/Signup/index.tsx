@@ -1,8 +1,5 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
 
-import { Button } from "@/components/ui/button"
+import { ButtonLoading } from "@/components/ButtonLoading"
 import {
   Form,
   FormControl,
@@ -13,25 +10,10 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Link } from "react-router-dom"
-
-const formSchema = z.object({
-  username: z.string().min(2),
-  email: z.string().min(1).email(),
-  password: z.string().min(1).min(8),
-})
+import useSignup from "./useSignup"
 
 export default function Signup() {
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-  })
-
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
+  const { form, onSubmit, isPending } = useSignup()
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-blue-indigo-dye">
@@ -46,13 +28,13 @@ export default function Signup() {
 
           <FormField
             control={form.control}
-            name="username"
+            name="name"
             defaultValue=""
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Nome</FormLabel>
                 <FormControl>
-                  <Input placeholder="Digite seu nome" {...field} className="bg-gray-300"/>
+                  <Input placeholder="Digite seu nome" {...field} className="bg-gray-300" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -67,7 +49,7 @@ export default function Signup() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Digite seu email" {...field} className="bg-gray-300"/>
+                  <Input placeholder="Digite seu email" {...field} className="bg-gray-300" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -82,14 +64,20 @@ export default function Signup() {
               <FormItem>
                 <FormLabel>Senha</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Digite sua senha" {...field} className="bg-gray-300"/>
+                  <Input type="password" placeholder="Digite sua senha" {...field} className="bg-gray-300" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="w-full bg-blue-indigo-dye">Cadastrar</Button>
+          <ButtonLoading
+            type="submit"
+            isLoading={isPending}
+            className="w-full bg-blue-indigo-dye"
+          >
+            Cadastrar
+          </ButtonLoading>
 
           <p className="text-blue-indigo-dye font-semibold">
             Em caso de perda de acesso, entre em contato com

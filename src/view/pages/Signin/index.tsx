@@ -1,4 +1,3 @@
-import useLogin from "@/app/hooks/useLogin"
 import { ButtonLoading } from "@/components/ButtonLoading"
 import {
   Form,
@@ -9,10 +8,11 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import useSignin from "@/view/pages/Signin/useSignin"
 import { Link } from "react-router-dom"
 
 export default function Signin() {
-  const { form, onSubmit, isPending } = useLogin()
+  const { form, onSubmit, isPending } = useSignin()
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-blue-indigo-dye">
@@ -55,13 +55,17 @@ export default function Signin() {
             )}
           />
 
-          <ButtonLoading isLoading={isPending} className="w-full bg-blue-indigo-dye">
+          <ButtonLoading
+            type="submit"
+            isLoading={isPending}
+            className="w-full bg-blue-indigo-dye"
+          >
             Entrar
           </ButtonLoading>
 
           <p className="text-blue-indigo-dye font-semibold">
             Em caso de perda de acesso, entre em contato com
-            seu gerente ou supervisor.
+            seu <strong>gerente</strong> ou <strong>supervisor</strong>.
           </p>
         </form>
       </Form>

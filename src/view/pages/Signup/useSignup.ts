@@ -1,23 +1,21 @@
+import { FormSchemaSignup, schemaSignup } from "@/app/validations/schemaSignup"
 import { useToast } from "@/hooks/use-toast"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
-import UserService from "../services/UserService"
-import { FormSchemaLogin, schemaLogin } from "../validations/schemaLogin"
-import useAuth from "./useAuth"
+import UserService from "../../../app/services/UserService"
 
-export default function useLogin() {
+export default function useSignup() {
   const { toast } = useToast()
   const navigate = useNavigate()
-  const { signin } = useAuth()
 
-  const form = useForm<FormSchemaLogin>({
-    resolver: zodResolver(schemaLogin),
+  const form = useForm<FormSchemaSignup>({
+    resolver: zodResolver(schemaSignup),
   })
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: UserService.signin,
+    mutationFn: UserService.signup,
     onError: (error: Error) => {
       toast({ title: error.message, variant: 'destructive' })
     },
@@ -27,10 +25,8 @@ export default function useLogin() {
     },
   })
 
-  async function onSubmit(values: FormSchemaLogin) {
-    const data = await mutateAsync(values)
-
-    signin(data.accessToken)
+  async function onSubmit(values: FormSchemaSignup) {
+    await mutateAsync(values)
   }
 
   return {
