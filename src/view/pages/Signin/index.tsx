@@ -1,8 +1,5 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
-import { Button } from "@/components/ui/button"
+import useLogin from "@/app/hooks/useLogin"
+import { ButtonLoading } from "@/components/ButtonLoading"
 import {
   Form,
   FormControl,
@@ -12,35 +9,10 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Link, useNavigate } from "react-router-dom"
-
-const formSchema = z.object({
-  email: z.string().min(1).email(),
-  password: z.string().min(1).min(8),
-})
+import { Link } from "react-router-dom"
 
 export default function Signin() {
-  const navigate = useNavigate()
-
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-  })
-
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-
-    console.log(values)
-    const hasErrors = Object.entries(form.formState.errors).length > 0
-
-    if (hasErrors) {
-      return
-    }
-
-    navigate("/")
-  }
+  const { form, onSubmit, isPending } = useLogin()
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-blue-indigo-dye">
@@ -61,7 +33,7 @@ export default function Signin() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Digite seu email" {...field} className="bg-gray-300"/>
+                  <Input placeholder="Digite seu email" {...field} className="bg-gray-300" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -76,14 +48,16 @@ export default function Signin() {
               <FormItem>
                 <FormLabel>Senha</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Digite sua senha" {...field} className="bg-gray-300"/>
+                  <Input type="password" placeholder="Digite sua senha" {...field} className="bg-gray-300" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="w-full bg-blue-indigo-dye">Login</Button>
+          <ButtonLoading isLoading={isPending} className="w-full bg-blue-indigo-dye">
+            Entrar
+          </ButtonLoading>
 
           <p className="text-blue-indigo-dye font-semibold">
             Em caso de perda de acesso, entre em contato com
