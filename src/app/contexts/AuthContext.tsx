@@ -1,7 +1,11 @@
-import { createContext, useCallback, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { createContext, useCallback, useEffect, useState } from 'react'
 import { storage } from '../config/storage'
+import UserService from '../services/UserService'
+import { User } from '../types/User'
 
 export interface AuthContextProps {
+  user: User | undefined
   signedIn: boolean
   signin(token: string): void
   signout(): void
@@ -16,6 +20,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return !!storedAccessToken
   })
 
+  const { data, isError } = useQuery({
+    queryKey: ['user', 'me'],
+    queryFn: async () => UserService.me(),
+    enabled: signedIn,
+  })
+
   const signin = useCallback((accessToken: string) => {
     localStorage.setItem(storage.ACCESS_TOKEN, accessToken)
 
@@ -28,9 +38,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsSignedIn(false)
   }, [])
 
+  useEffect(() => {
+    if (isError) {
+      signout()
+    }
+  }, [isError, signout])
+
   return (
     <AuthContext.Provider
       value={{
+        user: data,
         signedIn,
         signin,
         signout,

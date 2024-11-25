@@ -4,4 +4,13 @@ export interface UserSignupRequest {
   password: string
 }
 
+type Roles = "Admin" | "Fornecedor" | "Funcionario"
+
+export interface User {
+  id: string
+  name: string
+  email: string
+  role: Roles
+}
+
 export type UserSigninRequest = Pick<UserSignupRequest, 'email' | 'password'>
