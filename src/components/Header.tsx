@@ -1,12 +1,11 @@
-import { cn } from "@/lib/utils";
-import { useNavigate } from "react-router-dom";
-import { AvatarProfile } from "./AvatarProfile";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
+import { AvatarProfile } from "./AvatarProfile";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -22,10 +21,10 @@ export default function Header() {
       </figure>
 
       <Popover>
-      <PopoverTrigger asChild>
-        <AvatarProfile />
-      </PopoverTrigger>
-      <PopoverContent
+        <PopoverTrigger asChild>
+          <AvatarProfile />
+        </PopoverTrigger>
+        <PopoverContent
           className={cn(
             "rounded-md bg-slate-800 text-white p-4 shadow-lg w-56",
             "flex flex-col space-y-2"
@@ -42,7 +41,7 @@ export default function Header() {
             Sair
           </button>
         </PopoverContent>
-    </Popover>
+      </Popover>
     </header>
   );
 }

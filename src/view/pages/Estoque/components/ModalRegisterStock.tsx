@@ -12,10 +12,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { fieldsSuppliers } from "@/data/fieldsSuppliers"
 import { Plus } from "lucide-react"
-import useModalRegisterSupplier from "./useModalRegisterSupplier"
+import useModalRegisterStock from "./useModalRegisterStock"
 
-export function ModalRegisterSupplier() {
-  const { form, onSubmit } = useModalRegisterSupplier()
+export function ModalRegisterStock() {
+  const { form, onSubmit } = useModalRegisterStock()
 
   return (
     <Dialog>

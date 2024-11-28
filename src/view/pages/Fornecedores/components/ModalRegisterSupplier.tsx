@@ -10,32 +10,17 @@ import {
 } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { Plus } from "lucide-react";
 import { useEffect } from "react";
-import * as yup from "yup";
 import useModalRegisterSupplier from "./useModalRegisterSupplier";
 
-// Definição do esquema de validação com mensagens de erro em português
-const schema = yup.object().shape({
-  cnpj: yup.string().required("CNPJ é obrigatório"),
-  companyName: yup.string().required("Razão Social é obrigatória"),
-  tradeName: yup.string().required("Nome Fantasia é obrigatório"),
-  cep: yup.string()
-    .matches(/^\d{5}-\d{3}$/, "CEP inválido. Use o formato 00000-000")
-    .required("CEP é obrigatório"),
-  address: yup.string().required("Endereço é obrigatório"),
-  city: yup.string().required("Cidade é obrigatória"),
-  state: yup.string().required("UF é obrigatório"),
-  neighborhood: yup.string().required("Bairro é obrigatório"),
-  phone: yup.string().required("Telefone é obrigatório"),
-  email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
-  representativeName: yup.string().required("Nome do Representante é obrigatório"),
-  // Complemento é opcional, portanto não precisa de validação
-});
+interface ModalRegisterSupplierProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
 
-export function ModalRegisterSupplier() {
-  const { form, onSubmit } = useModalRegisterSupplier({ resolver: yupResolver(schema) });
+export function ModalRegisterSupplier({ isOpen, onClose }: ModalRegisterSupplierProps) {
+  const { form, onSubmit } = useModalRegisterSupplier();
 
   // Reset form when modal is closed
   useEffect(() => {
@@ -45,7 +30,7 @@ export function ModalRegisterSupplier() {
   }, [form]);
 
   return (
-    <Dialog modal={true}>
+    <Dialog modal={true} open={isOpen} onOpenChange={onClose}>
       <DialogTrigger asChild>
         <Button className="bg-blue-prussian">
           Adicionar <Plus className="ml-2 h-4 w-4" />

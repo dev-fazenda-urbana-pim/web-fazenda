@@ -32,7 +32,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
-import { ModalRegisterSupplier } from "./ModalRegisterSupplier";
+import { ModalRegisterFinances } from "./ModalRegisterFinances";
 
 const data: Supplier[] = [
   { id: "1", nome: "João Silva", telefone: "(11) 98877-1234", dataVencimento: "15/08/2024", valor: "R$ 1,200.00" },
@@ -134,7 +134,7 @@ export function TableSuppliers() {
           />
           <Search className="absolute left-3 top-2 text-muted-foreground" />
         </div>
-        <ModalRegisterSupplier isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ModalRegisterFinances isOpen={isOpen} onClose={() => setIsOpen(prevState => !prevState)} />
       </header>
 
       <div className="rounded-md border">

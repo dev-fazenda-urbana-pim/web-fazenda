@@ -12,10 +12,15 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Plus } from "lucide-react";
 import { useEffect } from "react";
-import useModalRegisterSupplier from "./useModalRegisterSupplier";
+import useModalRegisterFinances from "./useModalRegisterFinances";
 
-export function ModalRegisterSupplier() {
-  const { form, onSubmit } = useModalRegisterSupplier();
+interface ModalRegisterFinancesProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function ModalRegisterFinances({ isOpen, onClose }: ModalRegisterFinancesProps) {
+  const { form, onSubmit } = useModalRegisterFinances();
 
   // Reset form when modal is closed
   useEffect(() => {
@@ -25,7 +30,7 @@ export function ModalRegisterSupplier() {
   }, [form]);
 
   return (
-    <Dialog modal={true}>
+    <Dialog modal={true} open={isOpen} onOpenChange={onClose}>
       <DialogTrigger asChild>
         <Button className="bg-blue-prussian">
           Adicionar Novo Lançamento <Plus className="ml-2 h-4 w-4" />
@@ -50,7 +55,7 @@ export function ModalRegisterSupplier() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="nome"
+                  name="address"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>
@@ -65,7 +70,7 @@ export function ModalRegisterSupplier() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="telefone"
+                  name="phone"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>
@@ -84,7 +89,7 @@ export function ModalRegisterSupplier() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="data"
+                  name="city"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>
@@ -100,7 +105,7 @@ export function ModalRegisterSupplier() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="valor"
+                  name="state"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>

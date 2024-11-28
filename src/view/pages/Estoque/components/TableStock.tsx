@@ -10,19 +10,10 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Search } from "lucide-react";
+import { ArrowUpDown, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -209,7 +200,7 @@ export const columns: ColumnDef<Payment>[] = [
     accessorKey: "Itens",
     header: () => <div className="text-right">Itens</div>,
     cell: ({ row }) => (
-      <div className="text-right font-medium">{row.getValue("Itens")}</div>
+      <div className="text-right font-medium">{row.getValue("Itens") as React.ReactNode}</div>
     ),
   },
   {
@@ -218,7 +209,7 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => {
       const peso = row.getValue("Peso");
       return (
-        <div className="text-right font-medium">{peso}</div>
+        <div className="text-right font-medium">{peso as React.ReactNode}</div>
       );
     },
   },
@@ -233,20 +224,15 @@ export const columns: ColumnDef<Payment>[] = [
         "Baixo": "text-gray-500",
       };
       return (
-        <div className={`capitalize ${statusStyles[status]}`}>{status}</div>
+        <div className={statusStyles[status as keyof typeof statusStyles]}>
+          {status as React.ReactNode}
+        </div>
       );
-    },
-  },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const payment = row.original;
     },
   },
 ];
 
-export function TableSuppliers() {
+export function TableStock() {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});

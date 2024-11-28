@@ -1,7 +1,7 @@
-import { TrendingUp } from "lucide-react";
-import { Bar, BarChart, XAxis, YAxis, Label, LabelList } from "recharts";
 import { Navbar } from "@/components/Navbar";
+import { Bar, BarChart, Label, LabelList, XAxis, YAxis } from "recharts";
 
+import Header from "@/components/Header";
 import {
   Card,
   CardContent,
@@ -16,7 +16,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import Header from "@/components/Header";
 
 const chartData = [
   { month: "Tomate", desktop: 50 },
@@ -72,7 +71,7 @@ export default function Producao() {
                     content={<ChartTooltipContent hideLabel />}
                   />
                   <Bar dataKey="desktop" fill="#4CAF50" radius={5}> {/* Cor ajustada */}
-                    <LabelList dataKey="desktop" position="inside" fill="#FFFFF"/> {/* Adiciona os rótulos dentro das barras */}
+                    <LabelList dataKey="desktop" position="inside" fill="#FFFFF" /> {/* Adiciona os rótulos dentro das barras */}
                   </Bar>
                 </BarChart>
               </ChartContainer>

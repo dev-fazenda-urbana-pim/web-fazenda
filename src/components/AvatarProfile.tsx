@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
 import { LogOut } from 'lucide-react';
 import { useState } from 'react';
-import LogoutModal from "./Confirm";
+import ConfirmModalLogout from "./ConfirmModalLogout";
 import imagem1 from "./imagens/avatar_matheus.png";
 
 export function AvatarProfile() {
@@ -45,14 +45,13 @@ export function AvatarProfile() {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {showLogoutModal && (
-        <div className="fixed inset-0 z-50">
-          <LogoutModal
-            onConfirm={handleConfirmLogout}
-            onCancel={handleCancelLogout}
-          />
-        </div>
-      )}
+      <div className="fixed inset-0 z-50">
+        <ConfirmModalLogout
+          isVisible={showLogoutModal}
+          onConfirm={handleConfirmLogout}
+          onCancel={handleCancelLogout}
+        />
+      </div>
     </>
   );
 }

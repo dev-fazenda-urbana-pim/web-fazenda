@@ -11,21 +11,18 @@ import {
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Plus } from "lucide-react"
-import useModalRegisterSupplier from "./useModalRegisterSupplier"
+import useModalRegisterSupplier from "./useModalRegisterLogistic"
 
-export function ModalRegisterSupplier() {
+interface ModalRegisterLogisticProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function ModalRegisterLogistic({ isOpen, onClose }: ModalRegisterLogisticProps) {
   const { form, onSubmit } = useModalRegisterSupplier()
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    form.trigger() // Trigger validation before submit
-    if (form.formState.isValid) {
-      onSubmit() // Call the submit handler if the form is valid
-    }
-  }
-
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogTrigger asChild>
         <Button className="bg-blue-prussian">
           Adicionar nova entrega <Plus className="ml-2 h-4 w-4" />
@@ -40,13 +37,13 @@ export function ModalRegisterSupplier() {
         </DialogHeader>
 
         <Form {...form}>
-          <form onSubmit={handleFormSubmit} className="space-y-8">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             {/* First Row */}
             <div className="flex flex-wrap -mx-2">
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="codigoEntrega"
+                  name="companyName"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Código de Entrega</FormLabel>
@@ -61,7 +58,7 @@ export function ModalRegisterSupplier() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="codigoProduto"
+                  name="complement"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Código Produto</FormLabel>
@@ -80,7 +77,7 @@ export function ModalRegisterSupplier() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="cliente"
+                  name="tradeName"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Cliente</FormLabel>
@@ -95,7 +92,7 @@ export function ModalRegisterSupplier() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="cepEntrega"
+                  name="cep"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>CEP Entrega</FormLabel>
@@ -114,7 +111,7 @@ export function ModalRegisterSupplier() {
               <div className="w-full sm:w-1/3 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="veiculoEntrega"
+                  name="representativeName"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Veículo de Entrega</FormLabel>
@@ -129,7 +126,7 @@ export function ModalRegisterSupplier() {
               <div className="w-full sm:w-1/3 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="placaVeiculo"
+                  name="neighborhood"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Placa Veículo</FormLabel>
@@ -144,7 +141,7 @@ export function ModalRegisterSupplier() {
               <div className="w-full sm:w-1/3 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="statusPedido"
+                  name="state"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Status Pedido</FormLabel>

@@ -1,8 +1,15 @@
 import Header from "@/components/Header";
-import { TableSuppliers } from "@/view/pages/Logistica/components log/TableSuppliers";
 import { Navbar } from "@/components/Navbar";
+import { TableLogistic } from "@/view/pages/Logistica/components/TableLogistic";
 
-function InfoBox({ icon, label, value, color }) {
+interface InfoBoxProps {
+  icon: string;
+  label: string;
+  value: string;
+  color: string;
+}
+
+function InfoBox({ icon, label, value, color }: InfoBoxProps) {
   return (
     <div className="flex items-center border rounded-lg shadow-sm p-4 gap-4" style={{ borderColor: color }}>
       <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: color }}>
@@ -44,8 +51,8 @@ export default function Logistica() {
               color="#FFD700"
             />
           </div>
-          {/* Tabela de fornecedores */}
-          <TableSuppliers />
+
+          <TableLogistic />
         </div>
       </div>
     </div>

@@ -32,7 +32,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
-import { ModalRegisterSupplier } from "./ModalRegisterSupplier";
+import { ModalRegisterLogistic } from "./ModalRegisterLogistic";
 
 const data: Supplier[] = [
   { id: "1", razaoSocial: "Tech Innovate Ltda", cnpj: "12.345.678/0001-90", nomeFantasia: "TechInn", endereco: "Av. do Progresso, 200", uf: "SP", status: "Ativo", contato: "(11) 4000-1234" },
@@ -115,7 +115,7 @@ export const columns: ColumnDef<Supplier>[] = [
   },
 ];
 
-export function TableSuppliers() {
+export function TableLogistic() {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -149,7 +149,7 @@ export function TableSuppliers() {
           />
           <Search className="absolute left-3 top-2 text-muted-foreground" />
         </div>
-        <ModalRegisterSupplier isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ModalRegisterLogistic isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </header>
 
       <div className="rounded-md border">
