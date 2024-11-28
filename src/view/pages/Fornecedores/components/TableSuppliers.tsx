@@ -137,10 +137,10 @@ export function TableSuppliers() {
   });
 
   return (
-    <div className="w-full px-5">
-      <header className="flex items-center justify-between py-4">
-        <h2 className="text-xl font-bold">Lista de Fornecedores</h2>
-        <div className="relative max-w-lg w-full">
+      <div className="w-full px-5">
+      <header className="flex flex-wrap items-center justify-between py-4 gap-4">
+        <h2 className="text-lg font-bold">Lista de Fornecedores</h2>
+        <div className="relative w-full sm:w-auto flex-1 sm:flex-none min-w-[300px] max-w-[400px]">
           <Input
             placeholder="Digitar nome do fornecedor"
             value={(table.getColumn("razaoSocial")?.getFilterValue() as string) ?? ""}
@@ -152,13 +152,14 @@ export function TableSuppliers() {
         <ModalRegisterSupplier isOpen={isOpen} setIsOpen={setIsOpen} />
       </header>
 
-      <div className="rounded-md border">
+      {/* Contêiner Responsivo */}
+      <div className="overflow-x-auto rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="text-sm">
                     {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
@@ -170,7 +171,9 @@ export function TableSuppliers() {
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    <TableCell key={cell.id} className="text-sm whitespace-nowrap">
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))
@@ -185,7 +188,7 @@ export function TableSuppliers() {
         </Table>
       </div>
 
-      <footer className="flex items-center justify-between space-x-2 py-4">
+      <footer className="flex flex-wrap items-center justify-between space-x-2 py-4 gap-4">
         <div className="space-x-2">
           <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
             Anterior
@@ -200,5 +203,6 @@ export function TableSuppliers() {
         </div>
       </footer>
     </div>
+
   );
 }

@@ -34,24 +34,15 @@ import {
 import { useState } from "react";
 import { ModalRegisterSupplier } from "./ModalRegisterSupplier";
 
-const data: Supplier[] = [
+const data = [
   { id: "1", nome: "João Silva", telefone: "(11) 98877-1234", dataVencimento: "15/08/2024", valor: "R$ 1,200.00" },
   { id: "2", nome: "Maria Souza", telefone: "(21) 95566-7890", dataVencimento: "22/08/2024", valor: "R$ 3,500.00" },
   { id: "3", nome: "Carlos Lima", telefone: "(31) 99888-4321", dataVencimento: "23/08/2024", valor: "R$ 750.00" },
   { id: "4", nome: "Ana Oliveira", telefone: "(41) 97777-6655", dataVencimento: "23/09/2024", valor: "R$ 2,300.00" },
-  { id: "5", nome: "Bruno Costa", telefone: "(51) 91111-2233", dataVencimento: "12/10/2024", valor: "R$ 1,050.00" },
+  { id: "5", nome: "Bruno Costa", telefone: "(51) 91111-2233", dataVencimento: "12/10/2024", valor: "R$ 1,050.00" }
 ];
 
-
-export type Supplier = {
-  id: string;
-  nome: string;
-  telefone: string;
-  dataVencimento: string;
-  valor: string;
-};
-
-export const columns: ColumnDef<Supplier>[] = [
+export const columns: ColumnDef<typeof data[0]>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -122,12 +113,12 @@ export function TableSuppliers() {
   });
 
   return (
-    <div className="w-full px-5">
-      <header className="flex items-center justify-between py-4">
-        <h2 className="text-xl font-bold">Futuros Lançamentos 🚀</h2>
-        <div className="relative max-w-lg w-full">
+      <div className="w-full px-5">
+      <header className="flex flex-wrap items-center justify-between py-4 gap-4">
+        <h2 className="text-lg font-bold">Lista de Pagamentos</h2>
+        <div className="relative w-full sm:w-auto flex-1 sm:flex-none min-w-[300px] max-w-[400px]">
           <Input
-            placeholder="Digitar nome do devedor"
+            placeholder="Digitar nome"
             value={(table.getColumn("nome")?.getFilterValue() as string) ?? ""}
             onChange={(event) => table.getColumn("nome")?.setFilterValue(event.target.value)}
             className="pl-10"
@@ -137,13 +128,14 @@ export function TableSuppliers() {
         <ModalRegisterSupplier isOpen={isOpen} setIsOpen={setIsOpen} />
       </header>
 
-      <div className="rounded-md border">
+      {/* Contêiner Responsivo */}
+      <div className="overflow-x-auto rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="text-sm">
                     {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
@@ -155,7 +147,9 @@ export function TableSuppliers() {
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    <TableCell key={cell.id} className="text-sm whitespace-nowrap">
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))
@@ -170,7 +164,7 @@ export function TableSuppliers() {
         </Table>
       </div>
 
-      <footer className="flex items-center justify-between space-x-2 py-4">
+      <footer className="flex flex-wrap items-center justify-between space-x-2 py-4 gap-4">
         <div className="space-x-2">
           <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
             Anterior

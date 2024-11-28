@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -6,10 +6,10 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger
-} from "@/components/ui/sheet"
-import { listModules } from "@/data/listModules"
-import { Link } from "react-router-dom"   
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { listModules } from "@/data/listModules";
+import { Link } from "react-router-dom";
 
 export function Navbar() {
   return (
@@ -17,8 +17,12 @@ export function Navbar() {
       <SheetTrigger asChild>
         <Button variant="outline">Menu</Button>
       </SheetTrigger>
-      <SheetContent side="left"  className="flex flex-col justify-between">
-        <div className="grid gap-6">
+      <SheetContent
+        side="left"
+        className="flex flex-col justify-between h-screen max-h-full overflow-hidden"
+      >
+        {/* Top Section with Scroll */}
+        <div className="grid gap-6 overflow-y-auto">
           <SheetHeader>
             <SheetTitle className="text-blue-indigo-dye">Módulos</SheetTitle>
             <SheetDescription hidden>
@@ -29,7 +33,7 @@ export function Navbar() {
           <nav>
             <ul className="grid gap-5">
               {listModules.map((module, index) => {
-                const IconModule = module.icon
+                const IconModule = module.icon;
 
                 return (
                   <Link to={module.href} key={index}>
@@ -38,18 +42,19 @@ export function Navbar() {
                       <p>{module.title}</p>
                     </li>
                   </Link>
-                )
+                );
               })}
             </ul>
           </nav>
         </div>
 
-        <SheetFooter className="block text-blue-indigo-dye font-bold">
+        {/* Footer Section */}
+        <SheetFooter className="block text-blue-indigo-dye font-bold border-t pt-4">
           <h3>Suporte</h3>
           <p>Urbanino@gmail.com</p>
           <p>(12) 99999 - 0000</p>
         </SheetFooter>
       </SheetContent>
     </Sheet>
-  )
+  );
 }

@@ -52,7 +52,7 @@ export function ModalRegisterSupplier() {
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="sm:max-w-[1500px] w-full"
+        className="sm:max-w-[1200px] max-w-full w-full max-h-[90vh] overflow-y-auto"
         onInteractOutside={(e) => e.preventDefault()}  // Impede fechamento ao clicar fora
       >
         <DialogHeader>
@@ -73,7 +73,7 @@ export function ModalRegisterSupplier() {
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>CPF/CNPJ</FormLabel>
+                      <FormLabel>CNPJ</FormLabel>
                       <FormControl><Input {...field} /></FormControl>
                       <FormMessage />
                     </FormItem>
@@ -233,9 +233,32 @@ export function ModalRegisterSupplier() {
 
             {/* Linha 5 */}
             <div className="flex flex-wrap -mx-2">
+              <div className="w-full px-2 mb-4">
+                <FormField
+                  control={form.control}
+                  name="representativeName"
+                  defaultValue=""
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nome do Representante</FormLabel>
+                      <FormControl><Input {...field} /></FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+              </div>
             </div>
 
             <DialogFooter>
+              <Button
+                type="button"
+                className="bg-gray-300 text-gray-700"
+                onClick={() => {
+                  form.reset(); // Reseta o formulário
+                }}
+                data-dismiss="dialog"
+              >
+                Limpar Tudo
+              </Button>
               <Button type="submit" className="bg-blue-prussian">Cadastrar</Button>
             </DialogFooter>
           </form>

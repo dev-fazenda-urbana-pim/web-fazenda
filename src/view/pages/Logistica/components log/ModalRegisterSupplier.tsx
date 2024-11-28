@@ -31,7 +31,10 @@ export function ModalRegisterSupplier() {
           Adicionar nova entrega <Plus className="ml-2 h-4 w-4" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[750px]" onClick={(e) => e.stopPropagation()}>
+      <DialogContent
+         className="sm:max-w-[800px] max-w-full w-full max-h-screen overflow-y-auto"
+        onInteractOutside={(e) => e.preventDefault()}  // Impede fechamento ao clicar fora
+      >
         <DialogHeader>
           <DialogTitle>Cadastro de Entrega</DialogTitle>
           <DialogDescription>
@@ -159,6 +162,16 @@ export function ModalRegisterSupplier() {
             </div>
 
             <DialogFooter>
+            <Button 
+                  type="button"
+                  className="bg-gray-300 text-gray-700"
+                  onClick={() => {
+                    form.reset(); // Reseta o formulário
+                  }}
+                  data-dismiss="dialog"
+                >
+                  Limpar Tudo 
+                </Button>
               <Button type="submit" className="bg-green-limon">Cadastrar</Button>
             </DialogFooter>
           </form>

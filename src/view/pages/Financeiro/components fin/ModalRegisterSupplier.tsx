@@ -32,7 +32,7 @@ export function ModalRegisterSupplier() {
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="sm:max-w-[800px] w-full"
+         className="sm:max-w-[800px] max-w-full w-full max-h-screen overflow-y-auto"
         onInteractOutside={(e) => e.preventDefault()}  // Impede fechamento ao clicar fora
       >
         <DialogHeader>
@@ -113,6 +113,16 @@ export function ModalRegisterSupplier() {
             </div>
 
             <DialogFooter>
+              <Button 
+                  type="button"
+                  className="bg-gray-300 text-gray-700"
+                  onClick={() => {
+                    form.reset(); // Reseta o formulário
+                  }}
+                  data-dismiss="dialog"
+                >
+                  Limpar Tudo 
+                </Button>
               <Button type="submit" className="bg-blue-prussian">Cadastrar</Button>
             </DialogFooter>
           </form>

@@ -4,8 +4,14 @@ import { Navbar } from "@/components/Navbar";
 
 function InfoBox({ icon, label, value, color }) {
   return (
-    <div className="flex items-center border rounded-lg shadow-sm p-4 gap-4" style={{ borderColor: color }}>
-      <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: color }}>
+    <div
+      className="flex items-center border rounded-lg shadow-sm p-4 gap-4 w-full sm:w-auto"
+      style={{ borderColor: color }}
+    >
+      <div
+        className="w-10 h-10 rounded-full flex items-center justify-center"
+        style={{ backgroundColor: color }}
+      >
         {icon}
       </div>
       <div>
@@ -24,7 +30,7 @@ export default function Logistica() {
         <Navbar />
         <div className="flex-1 overflow-auto p-4">
           {/* Adicionando as caixas de informações financeiras */}
-          <div className="flex justify-around mb-6">
+          <div className="flex flex-wrap justify-center gap-4 mb-6">
             <InfoBox
               icon="📦"
               label="Quantidade de entrega"
@@ -40,7 +46,7 @@ export default function Logistica() {
             <InfoBox
               icon="🚚"
               label="Pedidos a serem entregues (Hoje)"
-              value="4  "
+              value="4"
               color="#FFD700"
             />
           </div>

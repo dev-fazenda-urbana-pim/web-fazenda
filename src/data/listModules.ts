@@ -22,11 +22,6 @@ export const listModules = [
     href: "/financeiro"
   },
   {
-    icon: FileSliders,
-    title: "Administração",
-    href: "/administracao"
-  },
-  {
     icon: Tractor,
     title: "Logística",
     href: "/logistica"
