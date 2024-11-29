@@ -8,7 +8,7 @@ type Roles = "Admin" | "Fornecedor" | "Funcionario"
 
 export interface User {
   id: string
-  name: string
+  nome: string
   email: string
   role: Roles
 }
