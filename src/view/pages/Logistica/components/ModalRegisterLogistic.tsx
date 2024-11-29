@@ -171,7 +171,7 @@ export function ModalRegisterLogistic({ isOpen, onClose }: ModalRegisterLogistic
                 </Button>
               <Button type="submit" className="bg-green-limon">Cadastrar</Button>
             </DialogFooter>
-          </form>
+          </form> 
         </Form>
       </DialogContent>
     </Dialog>
