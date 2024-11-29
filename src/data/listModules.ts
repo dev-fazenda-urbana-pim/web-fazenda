@@ -1,4 +1,4 @@
-import { Box, ClipboardMinus, DollarSign, FileSliders, Tractor, UserCheck, Users } from "lucide-react";
+import { Box, ClipboardMinus, DollarSign, Tractor, UserCheck, Users } from "lucide-react";
 
 export const listModules = [
   {
