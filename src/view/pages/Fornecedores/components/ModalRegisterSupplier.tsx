@@ -38,7 +38,7 @@ export function ModalRegisterSupplier({ isOpen, onClose }: ModalRegisterSupplier
         </Button>
       </DialogTrigger>
       <DialogContent
-        className="sm:max-w-[1500px] w-full"
+        className="sm:max-w-[800px] max-w-full w-full max-h-screen overflow-y-auto"
         onInteractOutside={(e) => e.preventDefault()}  // Impede fechamento ao clicar fora
       >
         <DialogHeader>
