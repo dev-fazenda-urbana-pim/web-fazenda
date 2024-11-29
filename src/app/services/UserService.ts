@@ -15,7 +15,7 @@ class UsersService {
   }
 
   async signin(request: UserSigninRequest) {
-    const { data } = await httpClient.post('/user/session', request)
+    const { data } = await httpClient.post('/user/login', request)
 
     return data
   }
