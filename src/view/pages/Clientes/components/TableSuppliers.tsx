@@ -1,38 +1,38 @@
-  import {
-    ColumnDef,
-    ColumnFiltersState,
-    SortingState,
-    VisibilityState,
-    flexRender,
-    getCoreRowModel,
-    getFilteredRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    useReactTable
-  } from "@tanstack/react-table";
-  import { ArrowUpDown, MoreHorizontal, Search } from "lucide-react";
+import {
+  ColumnDef,
+  ColumnFiltersState,
+  SortingState,
+  VisibilityState,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable
+} from "@tanstack/react-table";
+import { MoreHorizontal, Search } from "lucide-react";
 
-  import { Button } from "@/components/ui/button";
-  import { Checkbox } from "@/components/ui/checkbox";
-  import {
-    DropdownMenu,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-    DropdownMenuContent
-  } from "@/components/ui/dropdown-menu";
-  import { Input } from "@/components/ui/input";
-  import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-  } from "@/components/ui/table";
-  import { useState } from "react";
-  import { ModalRegisterSupplier } from "./ModalRegisterSupplier";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { useState } from "react";
+import { ModalRegisterSupplier } from "./ModalRegisterSupplier";
 
   const data: Supplier[] = [
     { id: "1", razaoSocial: "AppleFarms", cnpj: "02.370.284/0001-33", nomeFantasia: "Apple", endereco: "Av. das Nações, 500", uf: "SP", status: "Ativo", contato: "(11) 5555-1234" },

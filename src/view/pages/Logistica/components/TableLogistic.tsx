@@ -32,14 +32,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
-import { ModalRegisterSupplier } from "./ModalRegisterSupplier";
+import { ModalRegisterLogistic } from "./ModalRegisterLogistic";
 
 const data = [
-  { id: "1", nome: "João Silva", telefone: "(11) 98877-1234", dataVencimento: "15/08/2024", valor: "R$ 1,200.00" },
-  { id: "2", nome: "Maria Souza", telefone: "(21) 95566-7890", dataVencimento: "22/08/2024", valor: "R$ 3,500.00" },
-  { id: "3", nome: "Carlos Lima", telefone: "(31) 99888-4321", dataVencimento: "23/08/2024", valor: "R$ 750.00" },
-  { id: "4", nome: "Ana Oliveira", telefone: "(41) 97777-6655", dataVencimento: "23/09/2024", valor: "R$ 2,300.00" },
-  { id: "5", nome: "Bruno Costa", telefone: "(51) 91111-2233", dataVencimento: "12/10/2024", valor: "R$ 1,050.00" }
+  { id: "1", codigoEntrega: "E001", codigoProduto: "P123", cliente: "João Silva", cepEntrega: "12345-678", veiculoEntrega: "Furgão", placaVeiculo: "ABC-1234", statusPedido: "Em andamento" },
+  { id: "2", codigoEntrega: "E002", codigoProduto: "P456", cliente: "Maria Souza", cepEntrega: "23456-789", veiculoEntrega: "Caminhão", placaVeiculo: "DEF-5678", statusPedido: "Entregue" },
+  { id: "3", codigoEntrega: "E003", codigoProduto: "P789", cliente: "Carlos Lima", cepEntrega: "34567-890", veiculoEntrega: "Van", placaVeiculo: "GHI-9012", statusPedido: "Cancelado" },
+  { id: "4", codigoEntrega: "E004", codigoProduto: "P012", cliente: "Ana Oliveira", cepEntrega: "45678-901", veiculoEntrega: "Caminhonete", placaVeiculo: "JKL-3456", statusPedido: "Em andamento" },
+  { id: "5", codigoEntrega: "E005", codigoProduto: "P345", cliente: "Bruno Costa", cepEntrega: "56789-012", veiculoEntrega: "Furgão", placaVeiculo: "MNO-7890", statusPedido: "Entregue" }
 ];
 
 export const columns: ColumnDef<typeof data[0]>[] = [
@@ -62,10 +62,13 @@ export const columns: ColumnDef<typeof data[0]>[] = [
     enableSorting: false,
     enableHiding: false,
   },
-  { accessorKey: "nome", header: "Nome" },
-  { accessorKey: "telefone", header: "Telefone" },
-  { accessorKey: "dataVencimento", header: "Data de Vencimento" },
-  { accessorKey: "valor", header: "Valor R$" },
+  { accessorKey: "codigoEntrega", header: "Código de Entrega" },
+  { accessorKey: "codigoProduto", header: "Código Produto" },
+  { accessorKey: "cliente", header: "Cliente" },
+  { accessorKey: "cepEntrega", header: "CEP Entrega" },
+  { accessorKey: "veiculoEntrega", header: "Veículo de Entrega" },
+  { accessorKey: "placaVeiculo", header: "Placa Veículo" },
+  { accessorKey: "statusPedido", header: "Status Pedido" },
   {
     id: "actions",
     enableHiding: false,
@@ -91,7 +94,7 @@ export const columns: ColumnDef<typeof data[0]>[] = [
   },
 ];
 
-export function TableSuppliers() {
+export function TableLogistic() {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -113,22 +116,21 @@ export function TableSuppliers() {
   });
 
   return (
-      <div className="w-full px-5">
+    <div className="w-full px-5">
       <header className="flex flex-wrap items-center justify-between py-4 gap-4">
-        <h2 className="text-lg font-bold">Lista de Pagamentos</h2>
+        <h2 className="text-lg font-bold">Entregas</h2>
         <div className="relative w-full sm:w-auto flex-1 sm:flex-none min-w-[300px] max-w-[400px]">
           <Input
-            placeholder="Digitar nome"
-            value={(table.getColumn("nome")?.getFilterValue() as string) ?? ""}
-            onChange={(event) => table.getColumn("nome")?.setFilterValue(event.target.value)}
+            placeholder="Digitar nome do cliente"
+            value={(table.getColumn("cliente")?.getFilterValue() as string) ?? ""}
+            onChange={(event) => table.getColumn("cliente")?.setFilterValue(event.target.value)}
             className="pl-10"
           />
           <Search className="absolute left-3 top-2 text-muted-foreground" />
         </div>
-        <ModalRegisterSupplier isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ModalRegisterLogistic isOpen={isOpen} onClose={() => setIsOpen(false)} />
       </header>
 
-      {/* Contêiner Responsivo */}
       <div className="overflow-x-auto rounded-md border">
         <Table>
           <TableHeader>

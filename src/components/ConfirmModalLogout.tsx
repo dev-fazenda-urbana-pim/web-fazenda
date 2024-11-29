@@ -1,6 +1,12 @@
-import React from 'react';
+interface ConfirmProps {
+  isVisible: boolean;
+  onConfirm: () => void;
+  onCancel: () => void;
+}
 
-const LogoutModal = ({ onConfirm, onCancel }) => {
+export default function ConfirmModalLogout({ isVisible, onConfirm, onCancel }: ConfirmProps) {
+  if (!isVisible) return null;
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="bg-gray-800 p-6 rounded-lg text-center text-white">
@@ -23,5 +29,3 @@ const LogoutModal = ({ onConfirm, onCancel }) => {
     </div>
   );
 };
-
-export default LogoutModal;

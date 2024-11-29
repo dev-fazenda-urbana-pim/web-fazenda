@@ -149,7 +149,7 @@ export function TableSuppliers() {
           />
           <Search className="absolute left-3 top-2 text-muted-foreground" />
         </div>
-        <ModalRegisterSupplier isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ModalRegisterSupplier isOpen={isOpen} onClose={() => setIsOpen(prevState => !prevState)} />
       </header>
 
       {/* Contêiner Responsivo */}

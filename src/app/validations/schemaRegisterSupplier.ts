@@ -1,35 +1,35 @@
 import { z } from 'zod';
 
 export const schemaRegisterSupplier = z.object({
-  companyName: z.string().min(1, {
-    message: "Company Name is required.",
-  }),
   cnpj: z.string()
-    .min(1, {
-      message: "CNPJ is required.",
-    })
-    .length(14, {
-      message: "CNPJ must be exactly 14 characters.",
-    })
-    .regex(/^\d{14}$/, {
-      message: "CNPJ must contain only numbers.",
-    }),
-  tradeName: z.string().min(1, {
-    message: "Trade Name is required.",
-  }),
-  address: z.string().min(1, {
-    message: "Address is required.",
-  }),
+    .min(1, { message: "CNPJ é obrigatório" })
+    .length(14, { message: "CNPJ deve ter exatamente 14 caracteres" })
+    .regex(/^\d{14}$/, { message: "CNPJ deve conter apenas números" }),
+  companyName: z.string()
+    .min(1, { message: "Razão Social é obrigatória" }),
+  tradeName: z.string()
+    .min(1, { message: "Nome Fantasia é obrigatório" }),
+  cep: z.string()
+    .regex(/^\d{5}-\d{3}$/, { message: "CEP inválido. Use o formato 00000-000" })
+    .min(1, { message: "CEP é obrigatório" }),
+  address: z.string()
+    .min(1, { message: "Endereço é obrigatório" }),
+  city: z.string()
+    .min(1, { message: "Cidade é obrigatória" }),
   state: z.string()
-    .length(2, {
-      message: "State must be exactly 2 characters.",
-    })
-    .regex(/^[A-Z]{2}$/, {
-      message: "State must be in uppercase letters.",
-    }),
-  contact: z.string().min(1, {
-    message: "Contact is required.",
-  }).email({
-    message: "Contact must be a valid email address.",
-  })
+    .length(2, { message: "UF deve ter exatamente 2 caracteres" })
+    .regex(/^[A-Z]{2}$/, { message: "UF deve conter apenas letras maiúsculas" })
+    .min(1, { message: "UF é obrigatório" }),
+  neighborhood: z.string()
+    .min(1, { message: "Bairro é obrigatório" }),
+  phone: z.string()
+    .min(1, { message: "Telefone é obrigatório" }),
+  email: z.string()
+    .email({ message: "E-mail inválido" })
+    .min(1, { message: "E-mail é obrigatório" }),
+  representativeName: z.string()
+    .min(1, { message: "Nome do Representante é obrigatório" }),
+  complement: z.string().optional(),
 });
+
+export type FormSchemaRegisterSupplier = z.infer<typeof schemaRegisterSupplier>;

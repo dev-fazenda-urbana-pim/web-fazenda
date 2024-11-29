@@ -1,16 +1,16 @@
-import Header from "@/components/Header"
-import { TableSuppliers } from "@/view/pages/Estoque/components copy/TableSuppliers"
+import Header from "@/components/Header";
 import { Navbar } from "@/components/Navbar";
+import { TableStock } from "@/view/pages/Estoque/components/TableStock";
 
 
 export default function Fornecedores() {
   return (
     <>
       <Header />
-      <>
-    <Navbar />
 
-      <TableSuppliers />
+      <>
+        <Navbar />
+        <TableStock />
       </>
     </>
   )

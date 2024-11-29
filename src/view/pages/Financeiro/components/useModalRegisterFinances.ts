@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-export default function useModalRegisterSupplier(p0: unknown) {
+export default function useModalRegisterFinances() {
   // 1. Define your form.
   const form = useForm<z.infer<typeof schemaRegisterSupplier>>({
     resolver: zodResolver(schemaRegisterSupplier),
@@ -20,4 +20,4 @@ export default function useModalRegisterSupplier(p0: unknown) {
 }
 
 
-    
+
