@@ -1,20 +1,34 @@
-import { schemaRegisterSupplier } from "@/app/validations/schemaRegisterSupplier"
+import SupplierService from "@/app/services/SupplierService"
+import { FormSchemaRegisterSupplier, schemaRegisterSupplier } from "@/app/validations/schemaRegisterSupplier"
+import { useToast } from "@/hooks/use-toast"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 
 export default function useModalRegisterSupplier() {
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof schemaRegisterSupplier>>({
+  const { toast } = useToast()
+
+  const form = useForm<FormSchemaRegisterSupplier>({
     resolver: zodResolver(schemaRegisterSupplier),
   })
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof schemaRegisterSupplier>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: SupplierService.create,
+    onError: (error: Error) => {
+      toast({ title: error.message, variant: 'destructive' })
+    },
+    onSuccess: (data) => {
+      toast({ title: data.message })
+    },
+  })
+
+  async function onSubmit(values: FormSchemaRegisterSupplier) {
+    await mutateAsync(values)
   }
 
-  return { form, onSubmit }
+  return {
+    form,
+    onSubmit,
+    isPending,
+  }
 }
