@@ -1,4 +1,5 @@
 import useAuth from "@/app/hooks/useAuth"
+import { LogOut } from "lucide-react"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -8,7 +9,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
+  AlertDialogTrigger
 } from "./ui/alert-dialog"
 import { Avatar, AvatarFallback } from "./ui/avatar"
 
@@ -32,7 +33,10 @@ export function AvatarProfile() {
 
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction onClick={signout}>Sair</AlertDialogAction>
+          <AlertDialogAction onClick={signout}>
+            <LogOut />
+            Sair
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
