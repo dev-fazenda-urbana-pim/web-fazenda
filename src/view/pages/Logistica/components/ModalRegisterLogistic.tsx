@@ -29,7 +29,7 @@ export function ModalRegisterLogistic({ isOpen, onClose }: ModalRegisterLogistic
         </Button>
       </DialogTrigger>
       <DialogContent
-         className="sm:max-w-[800px] max-w-full w-full max-h-screen overflow-y-auto"
+        className="sm:max-w-[800px] max-w-full w-full max-h-screen overflow-y-auto"
         onInteractOutside={(e) => e.preventDefault()}  // Impede fechamento ao clicar fora
       >
         <DialogHeader>
@@ -46,7 +46,7 @@ export function ModalRegisterLogistic({ isOpen, onClose }: ModalRegisterLogistic
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="companyName"
+                  name="socialReason"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Código de Entrega</FormLabel>
@@ -144,7 +144,7 @@ export function ModalRegisterLogistic({ isOpen, onClose }: ModalRegisterLogistic
               <div className="w-full sm:w-1/3 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="state"
+                  name="uf"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Status Pedido</FormLabel>
@@ -159,19 +159,19 @@ export function ModalRegisterLogistic({ isOpen, onClose }: ModalRegisterLogistic
             </div>
 
             <DialogFooter>
-            <Button 
-                  type="button"
-                  className="bg-gray-300 text-gray-700"
-                  onClick={() => {
-                    form.reset(); // Reseta o formulário
-                  }}
-                  data-dismiss="dialog"
-                >
-                  Limpar Tudo 
-                </Button>
+              <Button
+                type="button"
+                className="bg-gray-300 text-gray-700"
+                onClick={() => {
+                  form.reset(); // Reseta o formulário
+                }}
+                data-dismiss="dialog"
+              >
+                Limpar Tudo
+              </Button>
               <Button type="submit" className="bg-green-limon">Cadastrar</Button>
             </DialogFooter>
-          </form> 
+          </form>
         </Form>
       </DialogContent>
     </Dialog>

@@ -105,7 +105,7 @@ export function ModalRegisterFinances({ isOpen, onClose }: ModalRegisterFinances
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="state"
+                  name="uf"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>
@@ -118,7 +118,7 @@ export function ModalRegisterFinances({ isOpen, onClose }: ModalRegisterFinances
             </div>
 
             <DialogFooter>
-              <Button 
+              <Button
                   type="button"
                   className="bg-gray-300 text-gray-700"
                   onClick={() => {
@@ -126,7 +126,7 @@ export function ModalRegisterFinances({ isOpen, onClose }: ModalRegisterFinances
                   }}
                   data-dismiss="dialog"
                 >
-                  Limpar Tudo 
+                  Limpar Tudo
                 </Button>
               <Button type="submit" className="bg-blue-prussian">Cadastrar</Button>
             </DialogFooter>

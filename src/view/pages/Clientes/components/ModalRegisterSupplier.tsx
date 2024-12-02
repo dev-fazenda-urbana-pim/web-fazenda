@@ -69,7 +69,7 @@ export function ModalRegisterSupplier({ isOpen }: ModalRegisterSupplierProps) {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="companyName"
+                  name="socialReason"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>
@@ -159,7 +159,7 @@ export function ModalRegisterSupplier({ isOpen }: ModalRegisterSupplierProps) {
               <div className="w-full sm:w-1/6 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="state"
+                  name="uf"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>
