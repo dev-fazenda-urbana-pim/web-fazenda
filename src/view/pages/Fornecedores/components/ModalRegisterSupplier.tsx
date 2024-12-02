@@ -12,7 +12,6 @@ import {
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Plus } from "lucide-react";
-import { useEffect } from "react";
 import useModalRegisterSupplier from "./useModalRegisterSupplier";
 
 interface ModalRegisterSupplierProps {
@@ -23,15 +22,8 @@ interface ModalRegisterSupplierProps {
 export function ModalRegisterSupplier({ isOpen, onClose }: ModalRegisterSupplierProps) {
   const { form, onSubmit, isPending } = useModalRegisterSupplier();
 
-  // Reset form when modal is closed
-  useEffect(() => {
-    return () => {
-      form.reset();
-    };
-  }, [form]);
-
   return (
-    <Dialog modal={true} open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogTrigger asChild>
         <Button className="bg-blue-prussian">
           Adicionar <Plus className="ml-2 h-4 w-4" />
@@ -70,7 +62,7 @@ export function ModalRegisterSupplier({ isOpen, onClose }: ModalRegisterSupplier
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="companyName"
+                  name="socialReason"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>
@@ -160,7 +152,7 @@ export function ModalRegisterSupplier({ isOpen, onClose }: ModalRegisterSupplier
               <div className="w-full sm:w-1/6 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="state"
+                  name="uf"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>

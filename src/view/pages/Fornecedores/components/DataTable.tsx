@@ -43,7 +43,7 @@ export function DataTable({ suppliers }: DataTableProps) {
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={3}>{suppliers.length}</TableCell>
+          <TableCell colSpan={3}>{suppliers.length} resultados</TableCell>
         </TableRow>
       </TableFooter>
     </Table>

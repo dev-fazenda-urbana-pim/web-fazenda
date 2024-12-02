@@ -1,11 +1,11 @@
 export interface SupplierRequest {
   address: string;
   cnpj: string;
-  companyName: string;
+  socialReason: string;
   tradeName: string;
   cep: string;
   city: string;
-  state: string;
+  uf: string;
   neighborhood: string;
   phone: string;
   email: string;

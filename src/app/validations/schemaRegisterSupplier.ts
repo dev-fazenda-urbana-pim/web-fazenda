@@ -5,7 +5,7 @@ export const schemaRegisterSupplier = z.object({
     .min(1, { message: "CNPJ é obrigatório" })
     .length(14, { message: "CNPJ deve ter exatamente 14 caracteres" })
     .regex(/^\d{14}$/, { message: "CNPJ deve conter apenas números" }),
-  companyName: z.string()
+  socialReason: z.string()
     .min(1, { message: "Razão Social é obrigatória" }),
   tradeName: z.string()
     .min(1, { message: "Nome Fantasia é obrigatório" }),
@@ -16,7 +16,7 @@ export const schemaRegisterSupplier = z.object({
     .min(1, { message: "Endereço é obrigatório" }),
   city: z.string()
     .min(1, { message: "Cidade é obrigatória" }),
-  state: z.string()
+  uf: z.string()
     .length(2, { message: "UF deve ter exatamente 2 caracteres" })
     .regex(/^[A-Z]{2}$/, { message: "UF deve conter apenas letras maiúsculas" })
     .min(1, { message: "UF é obrigatório" }),
