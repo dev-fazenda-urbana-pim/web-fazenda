@@ -42,10 +42,14 @@ function InfoBox({ icon, label, value, color }: InfoBoxProps) {
 
 export default function Financeiro() {
   return (
+    <>
+    <Header />
+    <>
+    <Navbar />
     <div className="w-full h-screen flex flex-col">
-      <Header />
+      
       <div className="flex flex-1 overflow-hidden">
-        <Navbar />
+        
         <div className="flex-1 overflow-auto p-4">
           <div className="flex flex-wrap justify-between mb-6 gap-4">
             <InfoBox
@@ -71,6 +75,8 @@ export default function Financeiro() {
         </div>
       </div>
     </div>
+    </>
+    </>
   );
 }
 

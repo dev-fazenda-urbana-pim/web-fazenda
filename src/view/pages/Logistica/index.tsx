@@ -31,10 +31,13 @@ function InfoBox({ icon, label, value, color }: InfoBoxProps) {
 
 export default function Logistica() {
   return (
+    <>
+    <Header />
+    <Navbar />
     <div className="w-full h-screen flex flex-col">
-      <Header />
+      
       <div className="flex flex-1 overflow-hidden">
-        <Navbar />
+        
         <div className="flex-1 overflow-auto p-4">
           {/* Adicionando as caixas de informações financeiras */}
           <div className="flex flex-wrap justify-center gap-4 mb-6">
@@ -62,5 +65,6 @@ export default function Logistica() {
         </div>
       </div>
     </div>
+    </>
   );
 }
