@@ -1,5 +1,6 @@
 import { SupplierResponse } from "@/app/types/Supplier";
 import { formatCNPJ } from "@/app/utils/formatCnpj";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -37,7 +38,15 @@ export function DataTable({ suppliers }: DataTableProps) {
             <TableCell className="font-medium">{supplier.razao_social}</TableCell>
             <TableCell>{formatCNPJ(supplier.cnpj)}</TableCell>
             <TableCell>{supplier.uf}</TableCell>
-            <TableCell className="text-right">{supplier.status}</TableCell>
+            <TableCell className="text-right">
+              {supplier.status === "ATIVO" && (
+                <Badge variant="outline" className="bg-green-dark text-white">
+                  {supplier.status}
+                </Badge>
+              )}
+
+              {supplier.status === "INATIVO" && <Badge variant="destructive">{supplier.status}</Badge>}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

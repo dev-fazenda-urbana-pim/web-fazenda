@@ -18,6 +18,6 @@ export interface SupplierResponse {
   razao_social: string;
   cnpj: string;
   uf: string;
-  status: string;
+  status: "ATIVO" | "INATIVO";
   admin_FazendaId?: string;
 };
