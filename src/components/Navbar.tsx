@@ -32,11 +32,11 @@ export function Navbar() {
 
           <nav>
             <ul className="grid gap-5">
-              {listModules.map((module, index) => {
+              {listModules.map((module) => {
                 const IconModule = module.icon;
 
                 return (
-                  <Link to={module.href} key={index}>
+                  <Link to={module.href} key={module.title}>
                     <li className="flex items-center gap-2 text-blue-indigo-dye font-bold p-3">
                       <IconModule />
                       <p>{module.title}</p>

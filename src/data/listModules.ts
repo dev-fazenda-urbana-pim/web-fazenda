@@ -4,7 +4,7 @@ export const listModules = [
   {
     icon: UserCheck,
     title: "Fornecedores",
-    href: "/fornecedores"
+    href: "/"
   },
   {
     icon: Box,

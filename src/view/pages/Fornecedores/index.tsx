@@ -1,17 +1,41 @@
-import Header from "@/components/Header";
-import { Navbar } from "@/components/Navbar";
-import { TableSuppliers } from "@/view/pages/Fornecedores/components/TableSuppliers";
+import { Input } from "@/components/ui/input";
+
+import { TableSkeleton } from "@/components/TableSkeleton";
+import { Search } from "lucide-react";
+import { useState } from "react";
+import { DataTable } from "./components/DataTable";
+import { ModalRegisterSupplier } from "./components/ModalRegisterSupplier";
+import useSuppliers from "./useSuppliers";
+
+export type Supplier = {
+  id: string;
+  razao_social: string;
+  cnpj: string;
+  uf: string;
+  status: "ATIVO" | "INATIVO";
+};
 
 export default function Fornecedores() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const { suppliers, isPending } = useSuppliers()
+
   return (
-    <>
-      <Header />
+    <div className="w-full px-5">
+      <header className="flex flex-wrap items-center justify-between py-4 gap-4">
+        <h2 className="text-lg font-bold">Lista de Fornecedores</h2>
+        <div className="relative w-full sm:w-auto flex-1 sm:flex-none min-w-[300px] max-w-[400px]">
+          <Input
+            placeholder="Digitar nome do fornecedor"
+            className="pl-10"
+          />
+          <Search className="absolute left-3 top-2 text-muted-foreground" />
+        </div>
 
-      <>
-        <Navbar />
+        <ModalRegisterSupplier isOpen={isOpen} onClose={() => setIsOpen(prevState => !prevState)} />
+      </header>
 
-        <TableSuppliers />
-      </>
-    </>
-  )
+      {isPending ? <TableSkeleton /> : <DataTable suppliers={suppliers} />}
+    </div>
+  );
 }

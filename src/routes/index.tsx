@@ -1,8 +1,8 @@
+import { HeaderLayout } from "@/view/layouts/HeaderLayout";
 import Clientes from "@/view/pages/Clientes";
 import Estoque from "@/view/pages/Estoque";
 import Financeiro from "@/view/pages/Financeiro";
 import Fornecedores from "@/view/pages/Fornecedores";
-import Home from "@/view/pages/Home";
 import Logistica from "@/view/pages/Logistica";
 import Producao from "@/view/pages/Producao";
 import Signin from "@/view/pages/Signin";
@@ -20,13 +20,15 @@ export function Router() {
 
         {/* Private routes */}
         <Route element={<PrivateRoutes />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/fornecedores" element={<Fornecedores />} />
-          <Route path="/producao" element={<Producao />} />
-          <Route path="/estoque" element={<Estoque />} />
-          <Route path="/financeiro" element={<Financeiro />} />
-          <Route path="/logistica" element={<Logistica />} />
-          <Route path="/clientes" element={<Clientes />} />
+          {/* Header Layout */}
+          <Route element={<HeaderLayout />}>
+            <Route path="/" element={<Fornecedores />} />
+            <Route path="/producao" element={<Producao />} />
+            <Route path="/estoque" element={<Estoque />} />
+            <Route path="/financeiro" element={<Financeiro />} />
+            <Route path="/logistica" element={<Logistica />} />
+            <Route path="/clientes" element={<Clientes />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
