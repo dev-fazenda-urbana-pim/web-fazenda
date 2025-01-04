@@ -2,7 +2,6 @@ import { Input } from "@/components/ui/input";
 
 import { TableSkeleton } from "@/components/TableSkeleton";
 import { Search } from "lucide-react";
-import { useState } from "react";
 import { DataTable } from "./components/DataTable";
 import { ModalRegisterSupplier } from "./components/ModalRegisterSupplier";
 import useSuppliers from "./useSuppliers";
@@ -16,8 +15,6 @@ export type Supplier = {
 };
 
 export default function Fornecedores() {
-  const [isOpen, setIsOpen] = useState(false);
-
   const { suppliers, isPending } = useSuppliers()
 
   return (
@@ -32,7 +29,7 @@ export default function Fornecedores() {
           <Search className="absolute left-3 top-2 text-muted-foreground" />
         </div>
 
-        <ModalRegisterSupplier isOpen={isOpen} onClose={() => setIsOpen(prevState => !prevState)} />
+        <ModalRegisterSupplier />
       </header>
 
       {isPending ? <TableSkeleton /> : <DataTable suppliers={suppliers} />}

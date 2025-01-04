@@ -7,23 +7,18 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Plus } from "lucide-react";
 import useModalRegisterSupplier from "./useModalRegisterSupplier";
 
-interface ModalRegisterSupplierProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export function ModalRegisterSupplier({ isOpen, onClose }: ModalRegisterSupplierProps) {
-  const { form, onSubmit, isPending } = useModalRegisterSupplier();
+export function ModalRegisterSupplier() {
+  const { form, onSubmit, isPending, isModalOpen, toggleModal } = useModalRegisterSupplier();
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isModalOpen} onOpenChange={toggleModal}>
       <DialogTrigger asChild>
         <Button className="bg-blue-prussian">
           Adicionar <Plus className="ml-2 h-4 w-4" />

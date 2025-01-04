@@ -3,22 +3,16 @@ import { FormSchemaRegisterSupplier, schemaRegisterSupplier } from "@/app/valida
 import { useToast } from "@/hooks/use-toast"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useEffect } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 export default function useModalRegisterSupplier() {
   const { toast } = useToast()
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const form = useForm<FormSchemaRegisterSupplier>({
     resolver: zodResolver(schemaRegisterSupplier),
   })
-
-  // Reset form when modal is closed
-  useEffect(() => {
-    return () => {
-      form.reset();
-    };
-  }, [form]);
 
   const queryClient = useQueryClient()
 
@@ -28,8 +22,10 @@ export default function useModalRegisterSupplier() {
       toast({ title: error.message, variant: 'destructive' })
     },
     onSuccess: (data) => {
-      toast({ title: data.message })
+      form.reset()
       queryClient.invalidateQueries({ queryKey: ['suppliers'] })
+      toast({ title: data.message })
+      setIsModalOpen(false)
     },
   })
 
@@ -41,5 +37,7 @@ export default function useModalRegisterSupplier() {
     form,
     onSubmit,
     isPending,
+    isModalOpen,
+    toggleModal: () => setIsModalOpen(prevState => !prevState),
   }
 }
