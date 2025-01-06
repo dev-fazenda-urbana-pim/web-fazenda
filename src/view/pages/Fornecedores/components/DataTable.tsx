@@ -1,6 +1,11 @@
 import { SupplierResponse } from "@/app/types/Supplier";
 import { formatCNPJ } from "@/app/utils/formatCnpj";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent,
+  DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 import {
   Table,
   TableBody,
@@ -11,12 +16,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { MoreHorizontal } from "lucide-react";
+import useUpdateStatusSupplier from "../useUpdateStatusSupplier";
 
 interface DataTableProps {
   suppliers: SupplierResponse[] | undefined;
 }
 
 export function DataTable({ suppliers }: DataTableProps) {
+  const { updateStatus } = useUpdateStatusSupplier();
+
   if (!suppliers || suppliers.length === 0) {
     return null;
   }
@@ -46,6 +55,34 @@ export function DataTable({ suppliers }: DataTableProps) {
               )}
 
               {supplier.status === "INATIVO" && <Badge variant="destructive">{supplier.status}</Badge>}
+            </TableCell>
+            <TableCell>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="h-8 w-8 p-0">
+                    <span className="sr-only">Open menu</span>
+                    <MoreHorizontal />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>Ações</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuCheckboxItem
+                    checked={supplier.status === "ATIVO"}
+                    disabled={supplier.status === "ATIVO"}
+                    onCheckedChange={() => updateStatus(supplier, "ATIVO")}
+                  >
+                    Ativar
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={supplier.status === "INATIVO"}
+                    disabled={supplier.status === "INATIVO"}
+                    onCheckedChange={() => updateStatus(supplier, "INATIVO")}
+                  >
+                    Inativar
+                  </DropdownMenuCheckboxItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </TableCell>
           </TableRow>
         ))}

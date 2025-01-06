@@ -1,3 +1,14 @@
+export type Supplier = {
+  id: string;
+  razaoSocial: string;
+  cnpj: string;
+  nomeFantasia: string;
+  endereco: string;
+  uf: string;
+  status: string;
+  contato: string;
+};
+
 export interface SupplierRequest {
   address: string;
   cnpj: string;
@@ -21,3 +32,11 @@ export interface SupplierResponse {
   status: "ATIVO" | "INATIVO";
   admin_FazendaId?: string;
 };
+
+export interface SupplierUpdate {
+  id: string;
+  razao_social: string,
+  cnpj: string,
+  uf: string,
+  status: "ATIVO" | "INATIVO",
+}

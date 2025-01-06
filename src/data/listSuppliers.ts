@@ -1,13 +1,4 @@
-export type Supplier = {
-  id: string;
-  razaoSocial: string;
-  cnpj: string;
-  nomeFantasia: string;
-  endereco: string;
-  uf: string;
-  status: string;
-  contato: string;
-};
+import { Supplier } from "../app/types/Supplier";
 
 export const suppliers: Supplier[] = [
   { id: "1", razaoSocial: "AppleFarms", cnpj: "02.370.284/0001-33", nomeFantasia: "Apple", endereco: "Av. das Nações, 500", uf: "SP", status: "Ativo", contato: "(11) 5555-1234" },

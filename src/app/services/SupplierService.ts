@@ -1,4 +1,4 @@
-import { SupplierRequest, SupplierResponse } from "../types/Supplier"
+import { SupplierRequest, SupplierResponse, SupplierUpdate } from "../types/Supplier"
 import { httpClient } from "./httpClient"
 
 class SupplierService {
@@ -10,6 +10,12 @@ class SupplierService {
 
   async listAll() {
     const { data } = await httpClient.get<SupplierResponse[]>('/suppliers')
+
+    return data
+  }
+
+  async updateStatus({ id, ...request }: SupplierUpdate) {
+    const { data } = await httpClient.patch(`/suppliers/${id}`, request)
 
     return data
   }
