@@ -11,26 +11,13 @@ import {
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Plus } from "lucide-react";
-import { useEffect } from "react";
-import useModalRegisterSupplier from "./useModalRegisterSupplier";
+import useModalRegisterClient from "./useModalRegisterClient";
 
-interface ModalRegisterSupplierProps {
-  isOpen?: boolean;
-  setIsOpen?: (isOpen: boolean) => void;
-}
-
-export function ModalRegisterSupplier({ isOpen }: ModalRegisterSupplierProps) {
-  const { form, onSubmit } = useModalRegisterSupplier();
-
-  // Reset form when modal is closed
-  useEffect(() => {
-    return () => {
-      form.reset();
-    };
-  }, [form]);
+export function ModalRegisterClient() {
+  const { form, onSubmit } = useModalRegisterClient();
 
   return (
-    <Dialog modal={isOpen}>
+    <Dialog>
       <DialogTrigger asChild>
         <Button className="bg-blue-prussian">
           Adicionar <Plus className="ml-2 h-4 w-4" />

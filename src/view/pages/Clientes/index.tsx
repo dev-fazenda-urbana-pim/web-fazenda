@@ -1,5 +1,4 @@
 import {
-  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -10,18 +9,10 @@ import {
   getSortedRowModel,
   useReactTable
 } from "@tanstack/react-table";
-import { MoreHorizontal, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
+
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -31,72 +22,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Supplier, suppliers } from "@/data/listSuppliers";
+import { suppliers } from "@/data/listSuppliers";
 import { useState } from "react";
-import { ModalRegisterSupplier } from "./components/ModalRegisterSupplier";
-
-export const columns: ColumnDef<Supplier>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  { accessorKey: "razaoSocial", header: "Razão Social" },
-  { accessorKey: "cnpj", header: "CNPJ" },
-  { accessorKey: "nomeFantasia", header: "Nome Fantasia" },
-  { accessorKey: "endereco", header: "Endereço" },
-  { accessorKey: "uf", header: "UF" },
-  { accessorKey: "status", header: "Status" },
-  { accessorKey: "contato", header: "Contato" },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const supplier = row.original;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Ações</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(supplier.id)}>Editar</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Ativar/Desativar</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
-  },
-];
+import { columns } from "../Estoque";
+import { columnsTableClients } from "./components/columnsTableClients";
+import { ModalRegisterClient } from "./components/ModalRegisterClient";
 
 export default function Clientes() {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
 
   const table = useReactTable({
     data: suppliers,
-    columns,
+    columns: columnsTableClients,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -121,7 +61,7 @@ export default function Clientes() {
           />
           <Search className="absolute left-3 top-2 text-muted-foreground" />
         </div>
-        <ModalRegisterSupplier isOpen={isOpen} setIsOpen={setIsOpen} />
+        <ModalRegisterClient />
       </header>
 
       {/* Tabela Responsiva */}
