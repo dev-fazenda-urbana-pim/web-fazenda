@@ -24,7 +24,6 @@ import {
 } from "@/components/ui/table";
 import { suppliers } from "@/data/listSuppliers";
 import { useState } from "react";
-import { columns } from "../Estoque";
 import { columnsTableClients } from "./components/columnsTableClients";
 import { ModalRegisterClient } from "./components/ModalRegisterClient";
 
@@ -91,7 +90,7 @@ export default function Clientes() {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell colSpan={columnsTableClients.length} className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>

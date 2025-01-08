@@ -6,14 +6,6 @@ import { DataTable } from "./components/DataTable";
 import { ModalRegisterSupplier } from "./components/ModalRegisterSupplier";
 import useSuppliers from "./useSuppliers";
 
-export type Supplier = {
-  id: string;
-  razao_social: string;
-  cnpj: string;
-  uf: string;
-  status: "ATIVO" | "INATIVO";
-};
-
 export default function Fornecedores() {
   const { suppliers, isPending } = useSuppliers()
 
