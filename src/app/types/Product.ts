@@ -1,11 +1,11 @@
 export interface Product {
   id: string
-  nome: string
-  descricao: string
-  peso: string | number
-  preco: string | number
-  qtd: string | number
-  imagem: string
+  name: string
+  description: string
+  weight: string | number
+  price: string | number
+  quantity: string | number
+  image: string
 }
 
 export type ProductCreateRequest = Omit<Product, 'id'>

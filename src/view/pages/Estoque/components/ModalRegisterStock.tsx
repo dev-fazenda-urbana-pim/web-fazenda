@@ -1,3 +1,4 @@
+import { ButtonLoading } from "@/components/ButtonLoading"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -13,7 +14,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Plus } from "lucide-react"
-import { ButtonLoading } from "@/components/ButtonLoading"
 import useModalRegisterStock from "./useModalRegisterStock"
 
 export function ModalRegisterStock() {
@@ -27,8 +27,8 @@ export function ModalRegisterStock() {
         </Button>
       </DialogTrigger>
       <DialogContent
-      className="sm:max-w-[750px]"
-      onInteractOutside={(e) => e.preventDefault()}  // Impede fechamento ao clicar fora
+        className="sm:max-w-[750px]"
+        onInteractOutside={(e) => e.preventDefault()}  // Impede fechamento ao clicar fora
       >
         <DialogHeader>
           <DialogTitle>Cadastro de Produtos</DialogTitle>
@@ -43,7 +43,7 @@ export function ModalRegisterStock() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="nome"
+                  name="name"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>
@@ -60,7 +60,7 @@ export function ModalRegisterStock() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="peso"
+                  name="weight"
                   defaultValue={0}
                   render={({ field }) => (
                     <FormItem>
@@ -77,7 +77,7 @@ export function ModalRegisterStock() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="preco"
+                  name="price"
                   defaultValue={0}
                   render={({ field }) => (
                     <FormItem>
@@ -94,7 +94,7 @@ export function ModalRegisterStock() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="qtd"
+                  name="quantity"
                   defaultValue={0}
                   render={({ field }) => (
                     <FormItem>
@@ -111,7 +111,7 @@ export function ModalRegisterStock() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="imagem"
+                  name="image"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>
@@ -128,7 +128,7 @@ export function ModalRegisterStock() {
               <div className="w-full sm:w-1/2 px-2 mb-4">
                 <FormField
                   control={form.control}
-                  name="descricao"
+                  name="description"
                   defaultValue=""
                   render={({ field }) => (
                     <FormItem>

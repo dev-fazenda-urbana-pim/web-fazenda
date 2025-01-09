@@ -34,9 +34,9 @@ export default function useModalRegisterStock() {
   async function onSubmit(values: FormSchemaRegisterProduct) {
     const newProduct = {
       ...values,
-      peso: currencyStringToNumber(values.peso),
-      preco: currencyStringToNumber(values.preco),
-      qtd: currencyStringToNumber(values.qtd),
+      weight: currencyStringToNumber(values.weight),
+      price: currencyStringToNumber(values.price),
+      quantity: currencyStringToNumber(values.quantity),
     }
 
     await mutateAsync(newProduct)

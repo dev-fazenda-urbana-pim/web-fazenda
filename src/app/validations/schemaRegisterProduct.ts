@@ -1,21 +1,23 @@
 import { z } from "zod";
 
 export const schemaRegisterProduct = z.object({
-  nome: z.string().min(1, { message: "O nome é obrigatório" }),
-  descricao: z.string().min(1, { message: "A descrição é obrigatória" }),
-  peso: z.union([
+  name: z.string().min(1, { message: "O nome é obrigatório" }),
+  description: z.string().min(1, { message: "A descrição é obrigatória" }),
+  weight: z.union([
     z.string().min(1, { message: "O peso é obrigatório" }),
     z.number(),
   ]),
-  preco: z.union([
+  price: z.union([
     z.string().min(1, { message: "O preço é obrigatório" }),
     z.number(),
   ]),
-  qtd: z.union([
+  quantity: z.union([
     z.string().min(1, { message: "A quantidade é obrigatória" }),
     z.number(),
   ]),
-  imagem: z.string().url({ message: "A imagem deve ser uma URL válida" }),
+  image: z.string()
+    .min(1, { message: "A imagem é obrigatória" })
+    .url({ message: "A imagem deve ser uma URL válida" }),
 });
 
 export type FormSchemaRegisterProduct = z.infer<typeof schemaRegisterProduct>;
