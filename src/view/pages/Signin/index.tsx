@@ -33,7 +33,7 @@ export default function Signin() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Digite seu email" {...field} className="bg-gray-300" />
+                  <Input type="email" placeholder="Digite seu email" {...field} className="bg-gray-300" />
                 </FormControl>
                 <FormMessage />
               </FormItem>

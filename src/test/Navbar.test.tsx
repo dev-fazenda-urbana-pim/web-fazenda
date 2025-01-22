@@ -1,6 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { Navbar } from "../components/Navbar"
+import { describe, expect, it } from "vitest";
+import { Navbar } from "../components/Navbar";
 
 describe("Navbar Component", () => {
   it("should render the menu trigger button", () => {
