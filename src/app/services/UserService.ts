@@ -1,4 +1,4 @@
-import { User, UserSigninRequest, UserSignupRequest } from "../types/User"
+import { User, UserResponse, UserSigninRequest, UserSignupRequest } from "../types/User"
 import { httpClient } from "./httpClient"
 
 class UsersService {
@@ -15,7 +15,7 @@ class UsersService {
   }
 
   async signin(request: UserSigninRequest) {
-    const { data } = await httpClient.post('/user/login', request)
+    const { data } = await httpClient.post<UserResponse>('/user/login', request)
 
     return data
   }

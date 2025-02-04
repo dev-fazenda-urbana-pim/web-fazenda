@@ -3,9 +3,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
-import useAuth from "../../../app/hooks/useAuth"
-import UserService from "../../../app/services/UserService"
-import { FormSchemaLogin, schemaLogin } from "../../../app/validations/schemaLogin"
+import useAuth from "@/app/hooks/useAuth"
+import UserService from "@/app/services/UserService"
+import { FormSchemaLogin, schemaLogin } from "@/app/validations/schemaLogin"
 
 export default function useSignin() {
   const { toast } = useToast()

@@ -14,7 +14,7 @@ export function ButtonLoading({ type, children, isLoading, className }: ButtonLo
       disabled={isLoading}
       className={className}
     >
-      {isLoading ? <Loader2 className="animate-spin" /> : children}
+      {isLoading ? <Loader2 className="animate-spin" role="status" /> : children}
     </Button>
   )
 }

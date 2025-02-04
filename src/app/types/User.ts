@@ -14,3 +14,8 @@ export interface User {
 }
 
 export type UserSigninRequest = Pick<UserSignupRequest, 'email' | 'password'>
+
+export interface UserResponse {
+  message: string
+  accessToken: string
+}

@@ -1,28 +1,24 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { Navbar } from "../components/Navbar";
 
-describe("Navbar Component", () => {
-  it("should render the menu trigger button", () => {
+describe("<Navbar>", () => {
+  beforeEach(() => {
     render(
       <BrowserRouter>
         <Navbar />
       </BrowserRouter>
-    );
+    )
+  });
 
+  it("should render the menu trigger button", () => {
     // Verifica se o botão do menu está presente
     const menuButton = screen.getByRole("button", { name: /menu/i });
     expect(menuButton).toBeInTheDocument();
   });
 
   it("should open the menu when the button is clicked", () => {
-    render(
-      <BrowserRouter>
-        <Navbar />
-      </BrowserRouter>
-    );
-
     // Simula o clique no botão do menu
     const menuButton = screen.getByRole("button", { name: /menu/i });
     fireEvent.click(menuButton);
@@ -33,12 +29,6 @@ describe("Navbar Component", () => {
   });
 
   it("should render all navigation items", () => {
-    render(
-      <BrowserRouter>
-        <Navbar />
-      </BrowserRouter>
-    );
-
     // Simula o clique no botão do menu para abrir o menu
     const menuButton = screen.getByRole("button", { name: /menu/i });
     fireEvent.click(menuButton);
@@ -49,12 +39,6 @@ describe("Navbar Component", () => {
   });
 
   it("should render the footer with support information", () => {
-    render(
-      <BrowserRouter>
-        <Navbar />
-      </BrowserRouter>
-    );
-
     // Simula o clique no botão do menu para abrir o menu
     const menuButton = screen.getByRole("button", { name: /menu/i });
     fireEvent.click(menuButton);
